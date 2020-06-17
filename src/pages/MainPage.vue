@@ -1,32 +1,63 @@
 <template>
-  <div class="container">
+  <b-container class="container">
+    <Header />
     <h1 class="title">Main Page</h1>
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
-    <!-- <div
+    <b-row>
+      <b-col class="col">
+        <RecipePreviewList
+          title="Browse for new Recipes to Cook"
+          recipeType="random"
+          class="RandomRecipes center"
+        />
+        <br />
+        <router-link v-if="!$root.store.username" to="/login" tag="button"
+          >You need to Login to vue this</router-link
+        >
+        <b-button variant="info" @click="NewRandomRecipes"
+          >Watch 3 New Recipes!</b-button
+        >
+      </b-col>
+      <b-col class="col">
+        <div v-if="!$root.store.username">
+          <!-- User Not Connected!!!!! -->
+          HERE Will be login component
+        </div>
+        <div v-else>
+          <RecipePreviewList
+            title="Last Viewed Recipes"
+            recipeType="last"
+            :class="{
+              RandomRecipes: true,
+              blur: !$root.store.username,
+              center: true,
+            }"
+            disabled
+          ></RecipePreviewList>
+        </div>
+      </b-col>
+
+      <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
       Centeredasdasdad
     </div>-->
-  </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import Header from "../components/Header";
 export default {
   components: {
-    RecipePreviewList
-  }
+    RecipePreviewList,
+    Header,
+  },
+  methods: {
+    NewRandomRecipes() {
+      this.$emit("updateRecipes", "random");
+    },
+  },
 };
 </script>
 
@@ -41,5 +72,9 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+
+.col {
+  border-style: dotted;
 }
 </style>

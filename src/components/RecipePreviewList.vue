@@ -1,14 +1,15 @@
 <template>
-  <b-container>
-    <h3>
-      {{ title }}:
-      <slot></slot>
-    </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
+  <b-container class="container">
+    <b-col>
+      <h3>
+        {{ title }}
+        <slot></slot>
+      </h3>
+
+      <b-row class="row" v-for="r in recipes" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-    </b-row>
+      </b-row>
+    </b-col>
   </b-container>
 </template>
 
@@ -17,44 +18,72 @@ import RecipePreview from "./RecipePreview.vue";
 export default {
   name: "RecipePreviewList",
   components: {
-    RecipePreview
+    RecipePreview,
   },
   props: {
     title: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    recipeType: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
     };
   },
   mounted() {
-    this.updateRecipes();
+    this.updateRecipes(this.recipeType);
   },
   methods: {
-    async updateRecipes() {
-      try {
-        const response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/random"
-        );
+    async updateRecipes(type) {
+      if (type && type == "random" && this.recipeType == type) {
+        try {
+          const response = await this.axios.get(
+            "https://test-for-3-2.herokuapp.com/recipes/random"
+          );
 
-        // console.log(response);
-        const recipes = response.data.recipes;
-        this.recipes = [];
-        this.recipes.push(...recipes);
-        // console.log(this.recipes);
-      } catch (error) {
-        console.log(error);
+          // console.log(response);
+          const recipes = response.data.recipes;
+          this.recipes = [];
+          this.recipes.push(...recipes);
+          // console.log(this.recipes);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (type && type == "last" && this.recipeType == type) {
+        //CHANGE !!!!!last 3 recipes from DB !!!!!!!!!!!!!!!!!!!!!!
+        try {
+          const response = await this.axios.get(
+            "https://test-for-3-2.herokuapp.com/recipes/random"
+          );
+
+          // console.log(response);
+          const recipes = response.data.recipes;
+          this.recipes = [];
+          this.recipes.push(...recipes);
+          // console.log(this.recipes);
+        } catch (error) {
+          console.log(error);
+        }
       }
-    }
-  }
+    },
+  },
+  created: function() {
+    this.$parent.$on("updateRecipes", this.updateRecipes);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+.row {
+  padding: 10 px;
+  border-style: dotted;
 }
 </style>

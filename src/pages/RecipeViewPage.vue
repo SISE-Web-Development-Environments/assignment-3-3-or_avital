@@ -1,34 +1,36 @@
 <template>
   <div class="container">
     <div v-if="recipe">
-      <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
-        <img :src="recipe.image" class="center" />
-      </div>
-      <div class="recipe-body">
-        <div class="wrapper">
-          <div class="wrapped">
+      <b-row>
+        <b-col>
+          <img :src="recipe.image" class="center" />
+        </b-col>
+        <b-col>
+          <b-row align-v="center">
+            <h1>{{ recipe.title }}</h1>
+          </b-row>
+          <b-row align-v="center">
             <div class="mb-3">
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
               <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div>Vegetarian ?</div>
+              <div>Vegan?</div>
+              <div>Gluten Free?</div>
+              <b-button>Add To Favorites</b-button>
+              <div>Watched</div>
             </div>
-            Ingredients:
-            <ul>
-              <li
-                v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
-              >
-                {{ r.original }}
-              </li>
-            </ul>
+          </b-row>
+        </b-col>
+      </b-row>
+      <div class="recipe-body">
+        <div class="wrapper">
+          <div class="wrapped">
+            <Ingredients
+              :ingretients="recipe.extendedIngredients"
+            ></Ingredients>
           </div>
           <div class="wrapped">
-            Instructions:
-            <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
-              </li>
-            </ol>
+            <Instructions :instructions="recipe._instructions"></Instructions>
           </div>
         </div>
       </div>
@@ -42,10 +44,17 @@
 </template>
 
 <script>
+import Ingredients from "../components/Ingredients";
+import Instructions from "../components/Instructions";
+
 export default {
+  components: {
+    Ingredients: Ingredients,
+    Instructions: Instructions,
+  },
   data() {
     return {
-      recipe: null
+      recipe: null,
     };
   },
   async created() {
@@ -57,7 +66,7 @@ export default {
         response = await this.axios.get(
           "https://test-for-3-2.herokuapp.com/recipes/info",
           {
-            params: { id: this.$route.params.recipeId }
+            params: { id: this.$route.params.recipeId },
           }
         );
 
@@ -76,7 +85,7 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
       } = response.data.recipe;
 
       let _instructions = analyzedInstructions
@@ -94,14 +103,14 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
       };
 
       this.recipe = _recipe;
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 </script>
 
@@ -116,7 +125,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 90%;
 }
 /* .recipe-header{
 
