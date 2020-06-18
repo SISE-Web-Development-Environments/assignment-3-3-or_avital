@@ -67,6 +67,7 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
+  base_url: "https://assignment-3-2-avital.herokuapp.com",
   username: localStorage.username,
   login(username) {
     localStorage.setItem("username", username);
