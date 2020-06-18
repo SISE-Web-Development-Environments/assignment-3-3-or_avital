@@ -43,7 +43,6 @@ export default {
       if (type && type == "random" && this.recipeType == type) {
         try {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/recipe/random"
           );
 
           // console.log(response);
