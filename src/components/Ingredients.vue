@@ -3,7 +3,7 @@
     Ingredients:
     <ul>
       <li v-for="(r, index) in ingretients" :key="index + '_' + r.id">
-        {{ r.original }}
+        {{ r }}
       </li>
     </ul>
   </div>

@@ -25,12 +25,10 @@
       <div class="recipe-body">
         <div class="wrapper">
           <div class="wrapped">
-            <Ingredients
-              :ingretients="recipe.extendedIngredients"
-            ></Ingredients>
+            <Ingredients :ingretients="recipe.ingredients"></Ingredients>
           </div>
           <div class="wrapped">
-            <Instructions :instructions="recipe._instructions"></Instructions>
+            <Instructions :instructions="recipe.instructions"></Instructions>
           </div>
         </div>
       </div>
@@ -64,48 +62,21 @@ export default {
 
       try {
         response = await this.axios.get(
-          "https://test-for-3-2.herokuapp.com/recipes/info",
-          {
-            params: { id: this.$route.params.recipeId },
-          }
+          "https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+            this.$route.params.recipeId
         );
 
         // console.log("response.status", response.status);
-        if (response.status !== 200) this.$router.replace("/NotFound");
+        if (response.status !== 200) {
+          this.$router.replace("/NotFound");
+        }
       } catch (error) {
         console.log("error.response.status", error.response.status);
         this.$router.replace("/NotFound");
         return;
       }
 
-      let {
-        analyzedInstructions,
-        instructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title,
-      } = response.data.recipe;
-
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
-
-      let _recipe = {
-        instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
-        image,
-        title,
-      };
-
+      let _recipe = response.data;
       this.recipe = _recipe;
     } catch (error) {
       console.log(error);

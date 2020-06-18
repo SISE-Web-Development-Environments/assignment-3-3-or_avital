@@ -63,11 +63,11 @@ export default {
         //CHANGE !!!!!last 3 recipes from DB !!!!!!!!!!!!!!!!!!!!!!
         try {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/recipe/random"
+            "https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes"
           );
 
           // console.log(response);
-          const recipe_dict = response.data;
+          const recipe_dict = response;
           this.recipes = [];
 
           this.recipes.push(...recipes);

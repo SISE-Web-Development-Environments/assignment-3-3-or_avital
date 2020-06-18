@@ -3,7 +3,7 @@
     Instructions:
     <ol>
       <li v-for="s in instructions" :key="s.number">
-        {{ s.step }}
+        {{ s }}
       </li>
     </ol>
   </div>
