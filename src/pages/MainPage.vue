@@ -20,7 +20,7 @@
       <b-col class="col">
         <div v-if="!$root.store.username">
           <!-- User Not Connected!!!!! -->
-          HERE Will be login component
+          <Login title="log in" />
         </div>
         <div v-else>
           <RecipePreviewList
@@ -48,10 +48,12 @@
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
 import Header from "../components/Header";
+import Login from "../components/Login";
 export default {
   components: {
     RecipePreviewList,
     Header,
+    Login,
   },
   methods: {
     NewRandomRecipes() {
