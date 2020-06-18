@@ -3,18 +3,72 @@
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
-    <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
-    </div>
-    <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
-      </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-      </ul>
-    </div>
+    <b-card
+      class="card"
+      bg-variant="light"
+      header-border-variant="danger"
+      align="center"
+      text-variant="black"
+    >
+      <b-card-img
+        :src="recipe.image"
+        img-top
+        img-width="150"
+        img-height="240"
+        class="image"
+      />
+      <b-card-body class="body" no-gutters>
+        <b-card-title :title="recipe.title" class="title">
+          <p>{{ recipe.title }}</p>
+        </b-card-title>
+        <b-row class="row" no-gutters>
+          <b-col
+            ><img
+              :src="require('@/images/clock_icon.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.readyInMinutes }} minutes
+          </b-col>
+          <b-col>
+            <img
+              :src="require('@/images/heart.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.aggregateLikes }} likes</b-col
+          >
+        </b-row>
+        <b-row class="row" no-gutters>
+          <b-col :class="{ notSomething: !recipe.vegetarian }">
+            <img
+              :src="require('@/images/vegetarian_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.vegan }">
+            <img
+              :src="require('@/images/vegan_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.glutenFree }">
+            <img
+              :src="require('@/images/gluten_free_icon.png')"
+              height="40px"
+              width="40px"
+          /></b-col>
+          <b-col v-if="$root.store.username">
+            <b-button>
+              <!-- see button only if not in favorties already-->
+              add to favorites
+            </b-button>
+          </b-col>
+        </b-row>
+      </b-card-body>
+    </b-card>
   </router-link>
 </template>
 
@@ -66,11 +120,24 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 90%;
-  height: 100%;
+  width: 70%;
+  height: 80%;
   position: relative;
   margin: 10px 10px;
+  color: #000000;
+  text-decoration: none;
 }
+
+.recipe-preview:hover {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.recipe-preview:hover .image {
+  opacity: 0.5;
+}
+
 .recipe-preview > .recipe-body {
   width: 100%;
   height: 200px;
@@ -90,69 +157,33 @@ export default {
   background-size: cover;
 }
 
-.recipe-preview .recipe-footer {
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-}
-
-.recipe-preview .recipe-footer .recipe-title {
-  padding: 10px 10px;
-  width: 100%;
-  font-size: 12pt;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-}
-
-.recipe-preview .recipe-footer ul.recipe-overview {
-  padding: 5px 10px;
-  width: 100%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 auto;
-  -ms-flex: 1 auto;
-  flex: 1 auto;
-  table-layout: fixed;
-  margin-bottom: 0px;
-}
-
-.recipe-preview .recipe-footer ul.recipe-overview li {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  width: 90px;
-  display: table-cell;
-  text-align: center;
-}
-
-.recipe-body {
-  border: 2px green;
-}
-
-.recipe-image {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+.card {
+  max-width: 100%;
+  max-height: 100%;
   display: block;
-  height: 200px;
-  width: 330px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
+  color: #000000;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 20px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.body {
+  margin: 0;
+  padding: 0px;
+}
+
+.row:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.notSomething {
+  opacity: 0.4;
 }
 </style>

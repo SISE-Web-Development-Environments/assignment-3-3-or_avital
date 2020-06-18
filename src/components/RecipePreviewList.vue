@@ -43,13 +43,18 @@ export default {
       if (type && type == "random" && this.recipeType == type) {
         try {
           const response = await this.axios.get(
-            "https://test-for-3-2.herokuapp.com/recipes/random"
+            "https://assignment-3-2-avital.herokuapp.com/recipe/random"
           );
 
           // console.log(response);
-          const recipes = response.data.recipes;
+          const recipe_dict = response.data;
           this.recipes = [];
-          this.recipes.push(...recipes);
+          for (var recipe_id in recipe_dict) {
+            var currRecipe = recipe_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.recipes.push(currRecipe);
+          }
+          //this.recipes.push(...recipes);
           // console.log(this.recipes);
         } catch (error) {
           console.log(error);
@@ -62,8 +67,9 @@ export default {
           );
 
           // console.log(response);
-          const recipes = response.data.recipes;
+          const recipe_dict = response.data;
           this.recipes = [];
+
           this.recipes.push(...recipes);
           // console.log(this.recipes);
         } catch (error) {
@@ -84,6 +90,6 @@ export default {
 }
 .row {
   padding: 10 px;
-  border-style: dotted;
+  align-items: center;
 }
 </style>
