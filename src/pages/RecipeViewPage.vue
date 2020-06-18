@@ -59,21 +59,25 @@ export default {
     try {
       let response;
       // response = this.$route.params.response;
+      response = await this.axios.get(
+        "https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+          this.$route.params.recipeId
+      );
 
-      try {
-        response = await this.axios.get(
-          "https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
-            this.$route.params.recipeId
-        );
-
-        // console.log("response.status", response.status);
-        if (response.status !== 200) {
-          this.$router.replace("/NotFound");
-        }
-      } catch (error) {
-        console.log("error.response.status", error.response.status);
+      // console.log("response.status", response.status);
+      if (response.status !== 200) {
         this.$router.replace("/NotFound");
-        return;
+      }
+
+      if (this.$root.store.username) {
+        // user connected
+        const addToWatched = await this.axios.post(
+          "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+          {
+            recipeID: this.$route.params.recipeId,
+            withCredentials: true,
+          }
+        );
       }
 
       let _recipe = response.data;
