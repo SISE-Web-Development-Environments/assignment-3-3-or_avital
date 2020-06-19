@@ -44,6 +44,7 @@ export default {
         try {
           const response = await this.axios.get(
             "https://assignment-3-2-avital.herokuapp.com/recipe/random"
+            //"http://localhost:3000/recipe/random"
           );
 
           // console.log(response);
@@ -63,14 +64,19 @@ export default {
         //CHANGE !!!!!last 3 recipes from DB !!!!!!!!!!!!!!!!!!!!!!
         try {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/recipe/random"
+            "https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes",
+            { withCredentials: true }
+            //
           );
 
           // console.log(response);
           const recipe_dict = response.data;
           this.recipes = [];
-
-          this.recipes.push(...recipes);
+          for (var recipe_id in recipe_dict) {
+            var currRecipe = recipe_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.recipes.push(currRecipe);
+          }
           // console.log(this.recipes);
         } catch (error) {
           console.log(error);
