@@ -8,6 +8,12 @@
         <b-col>
           <b-row align-v="center">
             <h1>{{ recipe.title }}</h1>
+            <img
+              v-if="$root.store.username && recipe.watched"
+              :src="require('@/images/eye.png')"
+              height="40px"
+              width="40px"
+            />
           </b-row>
           <b-row>
             <img
@@ -49,7 +55,7 @@
           <b-row v-if="$root.store.username">
             <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
               <p v-if="!recipe.favorite">add to favorites</p>
-              <p v-else>already in favorties</p>
+              <p v-else>already in favorites</p>
             </b-button>
           </b-row>
 
@@ -102,7 +108,7 @@ export default {
       if (response.status !== 200) {
         this.$router.replace("/NotFound");
       }
-
+      var recipe_dict_personal;
       if (this.$root.store.username) {
         // user connected
         const addToWatched = await this.axios.post(
@@ -112,10 +118,23 @@ export default {
             withCredentials: true,
           }
         );
+
+        const response_personal = await this.axios.get(
+          "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+            this.$route.params.recipeId +
+            "]",
+          { withCredentials: true }
+        );
+        recipe_dict_personal = response_personal.data;
       }
 
       let _recipe = response.data;
       this.recipe = _recipe;
+
+      if (recipe_dict_personal) {
+        this.recipe.watched = recipe_dict_personal[this.recipe.id].watched;
+        this.recipe.favorite = recipe_dict_personal[this.recipe.id].favorite;
+      }
     } catch (error) {
       console.log(error);
     }

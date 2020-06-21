@@ -72,7 +72,7 @@
           <b-button :disabled="recipe.favorite">
             <!-- see button only if not in favorties already-->
             <p v-if="!recipe.favorite">add to favorites</p>
-            <p v-else>already in favorties</p>
+            <p v-else>already in favorites</p>
           </b-button>
         </b-col>
       </b-row>
