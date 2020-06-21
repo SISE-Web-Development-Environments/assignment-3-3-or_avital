@@ -1,0 +1,98 @@
+<template>
+  <b-container class="container">
+    <b-row>
+      <b-row class="row" v-for="i in countOfRow" :key="i">
+        <b-col
+          class="col"
+          cols="4"
+          v-for="r in CounterItemsInCurrRow(i)"
+          :key="r.id"
+        >
+          <RecipePreview :recipe="r"></RecipePreview>
+        </b-col>
+      </b-row>
+    </b-row>
+  </b-container>
+</template>
+
+<script>
+import RecipePreview from "./RecipePreview.vue";
+export default {
+  name: "RecipePreviewTable",
+  components: {
+    RecipePreview,
+  },
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    recipeType: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      recipes: [],
+      defineNumOfItemsInRow: 3,
+    };
+  },
+  computed: {
+    countOfRow: function() {
+      var arrRcipeLength = this.recipes.length;
+      var numRows = this.defineNumOfItemsInRow;
+      return Math.ceil(arrRcipeLength / numRows);
+    },
+  },
+  mounted() {
+    this.updateRecipes(this.recipeType);
+  },
+  methods: {
+    async updateRecipes(type) {
+      try {
+        var recipe_dict;
+        if (type && type == "favorite" && this.recipeType == type) {
+          const response = await this.axios.get(
+            "https://assignment-3-2-avital.herokuapp.com/profile/getFavoriteRecipes",
+            { withCredentials: true }
+            //
+          );
+          recipe_dict = response.data;
+        }
+        // console.log(response);
+        // const recipe_dict = response.data;
+        this.recipes = [];
+        for (var recipe_id in recipe_dict) {
+          var currRecipe = recipe_dict[recipe_id];
+          currRecipe.id = recipe_id;
+          this.recipes.push(currRecipe);
+        }
+        // console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    CounterItemsInCurrRow(index) {
+      var currIndex = index - 1;
+      var in1 = currIndex * this.defineNumOfItemsInRow;
+      var in2 = index * this.defineNumOfItemsInRow;
+      return this.recipes.slice(in1, in2);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.container {
+  min-height: 400px;
+}
+.row {
+  padding: 10 px;
+  align-items: center;
+}
+.col {
+  // border-style: dotted;
+  align-items: center;
+}
+</style>

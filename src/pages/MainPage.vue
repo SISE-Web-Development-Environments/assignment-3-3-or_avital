@@ -10,6 +10,9 @@
           class="RandomRecipes center"
         />
         <br />
+        <router-link v-if="!$root.store.username" to="/login" tag="button"
+          >You need to Login to vue this</router-link
+        >
         <b-button variant="info" @click="NewRandomRecipes"
           >Watch 3 New Recipes!</b-button
         >
@@ -21,7 +24,7 @@
         </div>
         <div v-else>
           <RecipePreviewList
-            title="Your Last Viewed Recipes"
+            title="Last Viewed Recipes"
             recipeType="last"
             :class="{
               RandomRecipes: true,

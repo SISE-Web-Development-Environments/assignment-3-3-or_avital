@@ -44,8 +44,8 @@ export default {
         var recipe_dict;
         if (type && type == "random" && this.recipeType == type) {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/recipe/random"
-            //"http://localhost:3000/recipe/random"
+            "https://assignment-3-2-avital.herokuapp.com/recipe/random",
+            { withCredentials: true }
           );
           recipe_dict = response.data;
         } else if (type && type == "last" && this.recipeType == type) {

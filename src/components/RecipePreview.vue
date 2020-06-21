@@ -1,13 +1,14 @@
 <template>
-  <b-card
-    class="card"
-    bg-variant="light"
-    header-border-variant="danger"
-    align="center"
-    text-variant="black"
-    ><router-link
-      :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-      class="recipe-preview"
+  <router-link
+    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    class="recipe-preview"
+  >
+    <b-card
+      class="card"
+      bg-variant="light"
+      header-border-variant="danger"
+      align="center"
+      text-variant="black"
     >
       <b-card-img
         :src="recipe.image"
@@ -16,68 +17,59 @@
         img-height="240"
         class="image"
       />
-    </router-link>
-    <b-card-body class="body" no-gutters>
-      <b-card-title :title="recipe.title" class="title">
-        <p>
-          {{ recipe.title }}
-          <img
-            v-if="$root.store.username && recipe.watched"
-            :src="require('@/images/eye.png')"
-            height="40px"
-            width="40px"
-          />
-        </p>
-      </b-card-title>
-      <b-row class="row" no-gutters>
-        <b-col
-          ><img
-            :src="require('@/images/clock_icon.png')"
-            height="20px"
-            width="20px"
-          />
-          {{ recipe.readyInMinutes }} minutes
-        </b-col>
-        <b-col>
-          <img
-            :src="require('@/images/heart.png')"
-            height="20px"
-            width="20px"
-          />
-          {{ recipe.aggregateLikes }} likes</b-col
-        >
-      </b-row>
-      <b-row class="row" no-gutters>
-        <b-col :class="{ notSomething: !recipe.vegetarian }">
-          <img
-            :src="require('@/images/vegetarian_icon.png')"
-            height="40px"
-            width="40px"
-          />
-        </b-col>
-        <b-col :class="{ notSomething: !recipe.vegan }">
-          <img
-            :src="require('@/images/vegan_icon.png')"
-            height="40px"
-            width="40px"
-          />
-        </b-col>
-        <b-col :class="{ notSomething: !recipe.glutenFree }">
-          <img
-            :src="require('@/images/gluten_free_icon.png')"
-            height="40px"
-            width="40px"
-        /></b-col>
-        <b-col v-if="$root.store.username" @click="addRecipeToFavortie">
-          <b-button :disabled="recipe.favorite">
-            <!-- see button only if not in favorties already-->
-            <p v-if="!recipe.favorite">add to favorites</p>
-            <p v-else>already in favorties</p>
-          </b-button>
-        </b-col>
-      </b-row>
-    </b-card-body>
-  </b-card>
+      <b-card-body class="body" no-gutters>
+        <b-card-title :title="recipe.title" class="title">
+          <p>{{ recipe.title }}</p>
+        </b-card-title>
+        <b-row class="row" no-gutters>
+          <b-col
+            ><img
+              :src="require('@/images/clock_icon.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.readyInMinutes }} minutes
+          </b-col>
+          <b-col>
+            <img
+              :src="require('@/images/heart.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.aggregateLikes }} likes</b-col
+          >
+        </b-row>
+        <b-row class="row" no-gutters>
+          <b-col :class="{ notSomething: !recipe.vegetarian }">
+            <img
+              :src="require('@/images/vegetarian_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.vegan }">
+            <img
+              :src="require('@/images/vegan_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.glutenFree }">
+            <img
+              :src="require('@/images/gluten_free_icon.png')"
+              height="40px"
+              width="40px"
+          /></b-col>
+          <b-col v-if="$root.store.username">
+            <b-button>
+              <!-- see button only if not in favorties already-->
+              add to favorites
+            </b-button>
+          </b-col>
+        </b-row>
+      </b-card-body>
+    </b-card>
+  </router-link>
 </template>
 
 <script>
@@ -92,22 +84,30 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    async addRecipeToFavortie() {
-      try {
-        this.recipe.favorite = true;
-        const addToFavorites = await this.axios.post(
-          "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
-          {
-            recipeID: this.recipe.id,
-            withCredentials: true,
-          }
-        );
-      } catch (error) {
-        console.log(error.response);
-      }
-    },
+
+    // id: {
+    //   type: Number,
+    //   required: true
+    // },
+    // title: {
+    //   type: String,
+    //   required: true
+    // },
+    // readyInMinutes: {
+    //   type: Number,
+    //   required: true
+    // },
+    // image: {
+    //   type: String,
+    //   required: true
+    // },
+    // aggregateLikes: {
+    //   type: Number,
+    //   required: false,
+    //   default() {
+    //     return undefined;
+    //   }
+    // }
   },
 };
 </script>

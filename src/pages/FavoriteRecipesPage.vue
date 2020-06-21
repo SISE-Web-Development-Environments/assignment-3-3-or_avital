@@ -1,64 +1,37 @@
 <template>
   <b-container class="container">
+    <Header />
     <h1 class="title">Favorite recipes</h1>
     <b-row>
-      <b-col class="col" v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+      <!-- <b-col class="col" v-for="r in Math.ceil(recipes.length / 4)" :key="r.id">
+        <RecipePreview class="recipePreview" :recipe="r" /> -->
+      <b-col class="col">
+        <RecipePreviewTable
+          title="Browse for favorite Recipes"
+          recipeType="favorite"
+          class="FavoriteRecipes center"
+        />
+        <br />
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import RecipePreview from "../components/RecipePreview.vue";
+import RecipePreviewTable from "../components/RecipePreviewTable.vue";
+import Header from "../components/Header";
 export default {
-     name: "FavoriteRecipesPage",
   components: {
-    RecipePreview,
-  },
-  //   props: {
-  //     title: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     recipeType: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   },
-  data() {
-    return {
-      recipes: [],
-    };
+    RecipePreviewTable,
+    Header,
   },
   mounted() {
-    this.updateRecipes(this.recipeType);
+    // this.updateRecipes(this.recipeType);
   },
-  methods: {
-    async updateRecipes(type) {
-      //   if (type && type == "favorite" && this.recipeType == type) {
-      try {
-        const response = await this.axios.get(
-          "https://assignment-3-2-avital.herokuapp.com/profile/getFavoriteRecipes",
-          { withCredentials: true }
-        );
-
-        // console.log(response);
-        const recipe_dict = response.data;
-        this.recipes = [];
-        for (var recipe_id in recipe_dict) {
-          var currRecipe = recipe_dict[recipe_id];
-          currRecipe.id = recipe_id;
-          this.recipes.push(currRecipe);
-        }
-        // console.log(this.recipes);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
+  methods: {},
 };
 </script>
+
 <style lang="scss" scoped>
 .container {
   min-height: 400px;

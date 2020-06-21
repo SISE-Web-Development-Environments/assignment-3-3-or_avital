@@ -42,6 +42,17 @@ const routes = [
     name: "notFound",
     component: NotFound,
   },
+//   router.beforeEach((to, from, next) => {
+//   if (to.matched.some(route => route.meta.requiresAuth)) {
+//     if (Auth.currentUser) {
+//       next();
+//     } else {
+//       next({ path: '/user/login' });
+//     }
+//   }
+//   next();
+// })
+
 ];
 
 export default routes;
