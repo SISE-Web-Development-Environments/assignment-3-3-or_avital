@@ -2,6 +2,7 @@
   <div class="container">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+      <!-- username -->
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
@@ -21,10 +22,51 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username should contain only alphabet characters.
+        </b-form-invalid-feedback>
+      </b-form-group>
+      <!-- firstName -->
+      <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          First name should contain only alphabet characters.
+        </b-form-invalid-feedback>
+      </b-form-group>
+      <!-- last name -->
+      <b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          Last name should contain only alphabet characters.
         </b-form-invalid-feedback>
       </b-form-group>
 
+      <!-- country -->
       <b-form-group
         id="input-group-country"
         label-cols-sm="3"
@@ -41,7 +83,7 @@
           Country is required
         </b-form-invalid-feedback>
       </b-form-group>
-
+      <!-- password -->
       <b-form-group
         id="input-group-Password"
         label-cols-sm="3"
@@ -66,8 +108,18 @@
         >
           Have length between 5-10 characters long
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.containsNumber"
+        >
+          Have contain at least one number
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.containsSpecial"
+        >
+          Have contain at least one special number
+        </b-form-invalid-feedback>
       </b-form-group>
-
+      <!-- confirmed Password -->
       <b-form-group
         id="input-group-confirmedPassword"
         label-cols-sm="3"
@@ -87,6 +139,49 @@
           v-else-if="!$v.form.confirmedPassword.sameAsPassword"
         >
           The confirmed password is not equal to the original password
+        </b-form-invalid-feedback>
+      </b-form-group>
+      <!-- email -->
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          Email not valid.
+        </b-form-invalid-feedback>
+      </b-form-group>
+      <!-- profile_image_url -->
+      <b-form-group
+        id="input-group-profile_image_url"
+        label-cols-sm="3"
+        label="Profile Image Url:"
+        label-for="profile_image_url"
+      >
+        <b-form-input
+          id="profile_image_url"
+          v-model="$v.form.profile_image_url.$model"
+          type="text"
+          :state="validateState('profile_image_url')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.profile_image_url.required">
+          Profile image url is required.
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.profile_image_url.maxLength">
+          Url too long.
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.profile_image_url.url">
+          Url not valid.
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -128,6 +223,7 @@ import {
   alpha,
   sameAs,
   email,
+  url,
 } from "vuelidate/lib/validators";
 
 export default {
@@ -142,6 +238,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
+        profile_image_url: "",
         submitError: undefined,
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -156,16 +253,39 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha,
       },
+      firstName: {
+        required,
+        alpha,
+      },
+      lastName: {
+        required,
+        alpha,
+      },
       country: {
         required,
       },
       password: {
         required,
         length: (p) => minLength(5)(p) && maxLength(10)(p),
+        containsNumber: function(value) {
+          return /[0-9]/.test(value);
+        },
+        containsSpecial: function(value) {
+          return /[#?!@$%^&*-]/.test(value);
+        },
       },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password"),
+      },
+      email: {
+        required,
+        email,
+      },
+      profile_image_url: {
+        required,
+        url,
+        maxLength: maxLength(500),
       },
     },
   },
@@ -186,6 +306,11 @@ export default {
           {
             username: this.form.username,
             password: this.form.password,
+            firstname: this.form.firstName,
+            lastname: this.form.lastName,
+            country: this.form.country,
+            email: this.form.email,
+            imageUrl: this.form.profile_image_url,
           }
         );
         this.$router.push("/login");
