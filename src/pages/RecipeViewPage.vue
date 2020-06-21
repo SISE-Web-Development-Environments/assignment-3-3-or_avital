@@ -9,17 +9,51 @@
           <b-row align-v="center">
             <h1>{{ recipe.title }}</h1>
           </b-row>
-          <b-row align-v="center">
-            <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
-              <div>Vegetarian ?</div>
-              <div>Vegan?</div>
-              <div>Gluten Free?</div>
-              <b-button>Add To Favorites</b-button>
-              <div>Watched</div>
-            </div>
+          <b-row>
+            <img
+              :src="require('@/images/clock_icon.png')"
+              height="20px"
+              width="20px"
+            />Total time: {{ recipe.readyInMinutes }} minutes
           </b-row>
+          <b-row>
+            <img
+              :src="require('@/images/heart.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.aggregateLikes }} likes
+          </b-row>
+          <b-row>
+            <b-col :class="{ notSomething: !recipe.vegetarian }">
+              <img
+                :src="require('@/images/vegetarian_icon.png')"
+                height="40px"
+                width="40px"
+              />
+            </b-col>
+            <b-col :class="{ notSomething: !recipe.vegan }">
+              <img
+                :src="require('@/images/vegan_icon.png')"
+                height="40px"
+                width="40px"
+              />
+            </b-col>
+            <b-col :class="{ notSomething: !recipe.glutenFree }">
+              <img
+                :src="require('@/images/gluten_free_icon.png')"
+                height="40px"
+                width="40px"
+            /></b-col>
+          </b-row>
+          <b-row v-if="$root.store.username">
+            <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
+              <p v-if="!recipe.favorite">add to favorites</p>
+              <p v-else>already in favorties</p>
+            </b-button>
+          </b-row>
+
+          <div>Watched</div>
         </b-col>
       </b-row>
       <div class="recipe-body">
@@ -86,6 +120,22 @@ export default {
       console.log(error);
     }
   },
+  methods: {
+    async addRecipeToFavortie() {
+      try {
+        this.recipe.favorite = true;
+        const addToFavorites = await this.axios.post(
+          "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
+          {
+            recipeID: this.recipe.id,
+            withCredentials: true,
+          }
+        );
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
+  },
 };
 </script>
 
@@ -102,7 +152,8 @@ export default {
   margin-right: auto;
   width: 90%;
 }
-/* .recipe-header{
 
-} */
+.notSomething {
+  opacity: 0.4;
+}
 </style>

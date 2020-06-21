@@ -40,47 +40,46 @@ export default {
   },
   methods: {
     async updateRecipes(type) {
-      if (type && type == "random" && this.recipeType == type) {
-        try {
+      try {
+        var recipe_dict;
+        if (type && type == "random" && this.recipeType == type) {
           const response = await this.axios.get(
             "https://assignment-3-2-avital.herokuapp.com/recipe/random"
             //"http://localhost:3000/recipe/random"
           );
-
-          // console.log(response);
-          const recipe_dict = response.data;
-          this.recipes = [];
-          for (var recipe_id in recipe_dict) {
-            var currRecipe = recipe_dict[recipe_id];
-            currRecipe.id = recipe_id;
-            this.recipes.push(currRecipe);
-          }
-          //this.recipes.push(...recipes);
-          // console.log(this.recipes);
-        } catch (error) {
-          console.log(error);
-        }
-      } else if (type && type == "last" && this.recipeType == type) {
-        //CHANGE !!!!!last 3 recipes from DB !!!!!!!!!!!!!!!!!!!!!!
-        try {
-          const response = await this.axios.get(
+          recipe_dict = response.data;
+        } else if (type && type == "last" && this.recipeType == type) {
+          const response_last3 = await this.axios.get(
             "https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes",
             { withCredentials: true }
             //
           );
-
-          // console.log(response);
-          const recipe_dict = response.data;
-          this.recipes = [];
-          for (var recipe_id in recipe_dict) {
-            var currRecipe = recipe_dict[recipe_id];
-            currRecipe.id = recipe_id;
-            this.recipes.push(currRecipe);
-          }
-          // console.log(this.recipes);
-        } catch (error) {
-          console.log(error);
+          recipe_dict = response_last3.data;
         }
+        var recipe_dict_personal;
+        if (this.$root.store.username) {
+          var recipe_ids = Object.keys(recipe_dict);
+          const response_personal = await this.axios.get(
+            "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+              recipe_ids +
+              "]",
+            { withCredentials: true }
+          );
+          recipe_dict_personal = response_personal.data;
+        }
+        this.recipes = [];
+        for (var recipe_id in recipe_dict) {
+          var currRecipe = recipe_dict[recipe_id];
+          currRecipe.id = recipe_id;
+          if (recipe_dict_personal) {
+            // not undifiend
+            currRecipe.watched = recipe_dict_personal[recipe_id].watched;
+            currRecipe.favorite = recipe_dict_personal[recipe_id].favorite;
+          }
+          this.recipes.push(currRecipe);
+        }
+      } catch (error) {
+        console.log(error.response);
       }
     },
   },
