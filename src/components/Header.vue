@@ -28,7 +28,7 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item href="#">Favorite Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'favoriteRecipes' }">Favorite Recipes</b-dropdown-item>
               <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
               <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
             </b-nav-item-dropdown>
