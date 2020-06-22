@@ -59,6 +59,13 @@ export default {
             //
           );
           recipe_dict = response.data;
+        } else if (type && type == "personal" && this.recipeType == type) {
+          const response_personal_recipes = await this.axios.get(
+            "https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary", 
+            { withCredentials: true }
+            //
+          );
+          recipe_dict = response_personal_recipes.data;
         }
         // console.log(response);
         // const recipe_dict = response.data;

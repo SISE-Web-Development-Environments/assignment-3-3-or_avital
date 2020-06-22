@@ -29,7 +29,7 @@
                 <em>User</em>
               </template>
               <b-dropdown-item :to="{ name: 'favoriteRecipes' }">Favorite Recipes</b-dropdown-item>
-              <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'personalRecipes' }">Personal Recipes</b-dropdown-item>
               <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item href="#">LogOut</b-nav-item>
