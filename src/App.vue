@@ -30,6 +30,9 @@ export default {
         this.$forceUpdate();
       });
     },
+    // cookie() {
+    //   console.log($cookie.get("session"));
+    // },
   },
 };
 </script>
