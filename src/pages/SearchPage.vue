@@ -140,7 +140,7 @@ export default {
         { value: "Wheat", text: "Wheat" },
       ],
       num_of_recipes: 5,
-      search_results: null,
+      search_results: "",
       search_string: "",
       sortby_selected: null,
     };
