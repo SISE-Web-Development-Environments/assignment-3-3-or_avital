@@ -21,7 +21,7 @@
             <b-nav-item :to="{ name: 'login' }">LogIn</b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav v-else>
-            <b-navbar-brand>Hello {{ $cookies.get("session") }}</b-navbar-brand>
+            <b-navbar-brand>Hello {{ $root.store.username }}</b-navbar-brand>
 
             <b-nav-item-dropdown right>
               <!-- Using 'button-content' slot -->
