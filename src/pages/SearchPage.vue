@@ -150,7 +150,8 @@ export default {
       console.log("send search");
       try {
         const response = await this.axios.get(
-          "https://assignment-3-2-avital.herokuapp.com/recipe/search/query/" +
+          "http://localhost:3000/recipe/search/query/" +
+            // "https://assignment-3-2-avital.herokuapp.com/recipe/search/query/" +
             this.search_string +
             "/amount/" +
             this.num_of_recipes +
@@ -163,10 +164,11 @@ export default {
         var results_dic = response.data;
 
         var recipe_dict_personal;
-        if (this.$root.store.username) {
+        if (this.$cookies.get("session")) {
           var recipe_ids = Object.keys(results_dic);
           const response_personal = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+            "http://localhost:3000/profile/recipeInfo/[" +
+              // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
               recipe_ids +
               "]",
             { withCredentials: true }

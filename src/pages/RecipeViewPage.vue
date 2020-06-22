@@ -9,7 +9,7 @@
           <b-row align-v="center">
             <h1>{{ recipe.title }}</h1>
             <img
-              v-if="$root.store.username && recipe.watched"
+              v-if="$cookies.get('session') && recipe.watched"
               :src="require('@/images/eye.png')"
               height="40px"
               width="40px"
@@ -52,7 +52,7 @@
                 width="40px"
             /></b-col>
           </b-row>
-          <b-row v-if="$root.store.username">
+          <b-row v-if="$cookies.get('session')">
             <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
               <p v-if="!recipe.favorite">add to favorites</p>
               <p v-else>already in favorites</p>
@@ -100,8 +100,12 @@ export default {
       let response;
       // response = this.$route.params.response;
       response = await this.axios.get(
-        "https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
-          this.$route.params.recipeId
+        "http://localhost:3000/recipe/search/id/" +
+          //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+          this.$route.params.recipeId,
+        {
+          withCredentials: true,
+        }
       );
 
       // console.log("response.status", response.status);
@@ -109,10 +113,11 @@ export default {
         this.$router.replace("/NotFound");
       }
       var recipe_dict_personal;
-      if (this.$root.store.username) {
+      if (this.$cookies.get("session")) {
         // user connected
         const addToWatched = await this.axios.post(
-          "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+          "http://localhost:3000/profile/addRecipeToWatched",
+          //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
           {
             recipeID: this.$route.params.recipeId,
             withCredentials: true,
@@ -120,7 +125,8 @@ export default {
         );
 
         const response_personal = await this.axios.get(
-          "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+          "http://localhost:3000/profile/recipeInfo/[" +
+            // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
             this.$route.params.recipeId +
             "]",
           { withCredentials: true }
@@ -144,7 +150,8 @@ export default {
       try {
         this.recipe.favorite = true;
         const addToFavorites = await this.axios.post(
-          "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
+          "http://localhost:3000/profile/addRecipeToFavorties",
+          //  "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
           {
             recipeID: this.recipe.id,
             withCredentials: true,

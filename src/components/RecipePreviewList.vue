@@ -44,23 +44,26 @@ export default {
         var recipe_dict;
         if (type && type == "random" && this.recipeType == type) {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/recipe/random",
+            "http://localhost:3000/recipe/random",
+            //"https://assignment-3-2-avital.herokuapp.com/recipe/random",
             { withCredentials: true }
           );
           recipe_dict = response.data;
         } else if (type && type == "last" && this.recipeType == type) {
           const response_last3 = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes",
+            "http://localhost:3000/profile/getLast3Recipes",
+            //"https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes",
             { withCredentials: true }
             //
           );
           recipe_dict = response_last3.data;
         }
         var recipe_dict_personal;
-        if (this.$root.store.username) {
+        if (this.$cookies.get("session")) {
           var recipe_ids = Object.keys(recipe_dict);
           const response_personal = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+            "http://localhost:3000/profile/recipeInfo/[" +
+              //"https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
               recipe_ids +
               "]",
             { withCredentials: true }

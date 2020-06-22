@@ -14,21 +14,23 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-navbar-nav v-if="!$root.store.username">
+          <b-navbar-nav v-if="!$cookies.get('session')">
             <!-- User Not Connected!!!!! -->
             <b-navbar-brand>Hello Guest!</b-navbar-brand>
             <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
             <b-nav-item :to="{ name: 'login' }">LogIn</b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav v-else>
-            <b-navbar-brand>Hello {{ $root.store.username }}</b-navbar-brand>
+            <b-navbar-brand>Hello {{ $cookies.get("session") }}</b-navbar-brand>
 
             <b-nav-item-dropdown right>
               <!-- Using 'button-content' slot -->
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item :to="{ name: 'favoriteRecipes' }">Favorite Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'favoriteRecipes' }"
+                >Favorite Recipes</b-dropdown-item
+              >
               <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
               <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
             </b-nav-item-dropdown>

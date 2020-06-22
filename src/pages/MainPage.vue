@@ -1,5 +1,5 @@
 <template>
-  <b-container class="container">
+  <b-container class="container" :key="update_key">
     <Header />
     <h1 class="title">Main Page</h1>
     {{ this.$cookies.get("session") }}
@@ -11,7 +11,7 @@
           class="RandomRecipes center"
         />
         <br />
-        <router-link v-if="!$root.store.username" to="/login" tag="button"
+        <router-link v-if="!$cookies.get('session')" to="/login" tag="button"
           >You need to Login to vue this</router-link
         >
         <b-button variant="info" @click="NewRandomRecipes"
@@ -21,7 +21,7 @@
       <b-col class="col">
         <div v-if="!$cookies.get('session')">
           <!-- User Not Connected!!!!! -->
-          <Login title="log in" />
+          <Login title="log in" @loggedin="updateRightCol" />
         </div>
         <div v-else>
           <RecipePreviewList
@@ -51,6 +51,11 @@ import RecipePreviewList from "../components/RecipePreviewList";
 import Header from "../components/Header";
 import Login from "../components/Login";
 export default {
+  data() {
+    return {
+      update_key: 0,
+    };
+  },
   components: {
     RecipePreviewList,
     Header,
@@ -59,6 +64,10 @@ export default {
   methods: {
     NewRandomRecipes() {
       this.$emit("updateRecipes", "random");
+    },
+    updateRightCol() {
+      console.log("right col");
+      this.update_key = this.update_key + 1;
     },
   },
 };
