@@ -62,7 +62,8 @@ export default {
           recipe_dict = response.data;
         } else if (type && type == "personal" && this.recipeType == type) {
           const response_personal_recipes = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary", 
+            "http://localhost:3000/profile/getAllPersonalRecipesSummary",
+            //"https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary",
             { withCredentials: true }
             //
           );
