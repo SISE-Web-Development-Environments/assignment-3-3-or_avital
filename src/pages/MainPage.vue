@@ -65,7 +65,6 @@ export default {
       this.$emit("updateRecipes", "random");
     },
     updateRightCol() {
-      console.log("right col");
       this.update_key = this.update_key + 1;
     },
   },

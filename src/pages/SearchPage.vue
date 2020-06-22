@@ -197,8 +197,11 @@ export default {
           }
           this.search_results.push(currRecipe);
         }
+
+        //this.$router.push({ name: "search" }).catch((e) => {});
         this.searchkey = this.searchkey + 1;
       } catch (error) {
+        console.log(error);
         console.log(error.response);
       }
     },

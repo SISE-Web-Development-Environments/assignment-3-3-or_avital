@@ -34,7 +34,7 @@
               <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
               <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
             </b-nav-item-dropdown>
-            <b-nav-item href="#">LogOut</b-nav-item>
+            <b-nav-item @click="LogoutFunc">LogOut</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
@@ -43,7 +43,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    LogoutFunc() {
+      console.log("logout function");
+      this.$root.store.logout();
+      this.$router.push({ name: "main" }).catch((e) => {
+        this.$router.go(0);
+      });
+    },
+  },
+};
 </script>
 
 <style></style>

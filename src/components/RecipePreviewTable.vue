@@ -68,7 +68,6 @@ export default {
           }
         } else if (type && type == "search" && this.recipeType == type) {
           this.recipes = this.$parent.search_results;
-          console.log(recipe_dict);
         }
       } catch (error) {
         console.log(error);
