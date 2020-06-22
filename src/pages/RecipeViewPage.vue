@@ -1,82 +1,88 @@
 <template>
-  <div class="container">
-    <div v-if="recipe">
-      <b-row>
-        <b-col>
-          <img :src="recipe.image" class="center" />
-        </b-col>
-        <b-col>
-          <b-row align-v="center">
-            <h1>{{ recipe.title }}</h1>
-            <img
-              v-if="$cookies.get('session') && recipe.watched"
-              :src="require('@/images/eye.png')"
-              height="40px"
-              width="40px"
-            />
-          </b-row>
-          <b-row>
-            <img
-              :src="require('@/images/clock_icon.png')"
-              height="20px"
-              width="20px"
-            />Total time: {{ recipe.readyInMinutes }} minutes
-          </b-row>
-          <b-row>
-            <img
-              :src="require('@/images/heart.png')"
-              height="20px"
-              width="20px"
-            />
-            {{ recipe.aggregateLikes }} likes
-          </b-row>
-          <b-row>
-            <b-col :class="{ notSomething: !recipe.vegetarian }">
+  <div>
+    <Header />
+    <div class="container">
+      <div v-if="recipe">
+        <b-row>
+          <b-col>
+            <img :src="recipe.image" class="center" />
+          </b-col>
+          <b-col>
+            <b-row align-v="center">
+              <h1>{{ recipe.title }}</h1>
               <img
-                :src="require('@/images/vegetarian_icon.png')"
+                v-if="$cookies.get('session') && recipe.watched"
+                :src="require('@/images/eye.png')"
                 height="40px"
                 width="40px"
               />
-            </b-col>
-            <b-col :class="{ notSomething: !recipe.vegan }">
+            </b-row>
+            <b-row>
               <img
-                :src="require('@/images/vegan_icon.png')"
-                height="40px"
-                width="40px"
+                :src="require('@/images/clock_icon.png')"
+                height="20px"
+                width="20px"
+              />Total time: {{ recipe.readyInMinutes }} minutes
+            </b-row>
+            <b-row>
+              <img
+                :src="require('@/images/heart.png')"
+                height="20px"
+                width="20px"
               />
-            </b-col>
-            <b-col :class="{ notSomething: !recipe.glutenFree }">
-              <img
-                :src="require('@/images/gluten_free_icon.png')"
-                height="40px"
-                width="40px"
-            /></b-col>
-          </b-row>
-          <b-row v-if="$cookies.get('session')">
-            <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
-              <p v-if="!recipe.favorite">add to favorites</p>
-              <p v-else>already in favorites</p>
-            </b-button>
-          </b-row>
+              {{ recipe.aggregateLikes }} likes
+            </b-row>
+            <b-row>
+              <b-col :class="{ notSomething: !recipe.vegetarian }">
+                <img
+                  :src="require('@/images/vegetarian_icon.png')"
+                  height="40px"
+                  width="40px"
+                />
+              </b-col>
+              <b-col :class="{ notSomething: !recipe.vegan }">
+                <img
+                  :src="require('@/images/vegan_icon.png')"
+                  height="40px"
+                  width="40px"
+                />
+              </b-col>
+              <b-col :class="{ notSomething: !recipe.glutenFree }">
+                <img
+                  :src="require('@/images/gluten_free_icon.png')"
+                  height="40px"
+                  width="40px"
+              /></b-col>
+            </b-row>
+            <b-row v-if="$cookies.get('session')">
+              <b-button
+                :disabled="recipe.favorite"
+                @click="addRecipeToFavortie"
+              >
+                <p v-if="!recipe.favorite">add to favorites</p>
+                <p v-else>already in favorites</p>
+              </b-button>
+            </b-row>
 
-          <div>Watched</div>
-        </b-col>
-      </b-row>
-      <div class="recipe-body">
-        <div class="wrapper">
-          <div class="wrapped">
-            <Ingredients :ingretients="recipe.ingredients"></Ingredients>
-          </div>
-          <div class="wrapped">
-            <Instructions :instructions="recipe.instructions"></Instructions>
+            <div>Watched</div>
+          </b-col>
+        </b-row>
+        <div class="recipe-body">
+          <div class="wrapper">
+            <div class="wrapped">
+              <Ingredients :ingretients="recipe.ingredients"></Ingredients>
+            </div>
+            <div class="wrapped">
+              <Instructions :instructions="recipe.instructions"></Instructions>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- <pre>
+        <!-- <pre>
       {{ $route.params }}
       {{ recipe }}
     </pre
       > -->
+      </div>
     </div>
   </div>
 </template>
@@ -84,11 +90,13 @@
 <script>
 import Ingredients from "../components/Ingredients";
 import Instructions from "../components/Instructions";
+import Header from "../components/Header";
 
 export default {
   components: {
     Ingredients: Ingredients,
     Instructions: Instructions,
+    Header: Header,
   },
   data() {
     return {
@@ -181,5 +189,9 @@ export default {
 
 .notSomething {
   opacity: 0.4;
+}
+
+.container {
+  padding-top: 10px;
 }
 </style>

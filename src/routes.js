@@ -18,6 +18,11 @@ const routes = [
     component: () => import("./pages/FavoriteRecipesPage"),
   },
   {
+    path: "/familyRecipes",
+    name: "familyRecipes",
+    component: () => import("./pages/FamilyRecipePage.vue"),
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("./pages/LoginPage"),
@@ -42,17 +47,16 @@ const routes = [
     name: "notFound",
     component: NotFound,
   },
-//   router.beforeEach((to, from, next) => {
-//   if (to.matched.some(route => route.meta.requiresAuth)) {
-//     if (Auth.currentUser) {
-//       next();
-//     } else {
-//       next({ path: '/user/login' });
-//     }
-//   }
-//   next();
-// })
-
+  //   router.beforeEach((to, from, next) => {
+  //   if (to.matched.some(route => route.meta.requiresAuth)) {
+  //     if (Auth.currentUser) {
+  //       next();
+  //     } else {
+  //       next({ path: '/user/login' });
+  //     }
+  //   }
+  //   next();
+  // })
 ];
 
 export default routes;

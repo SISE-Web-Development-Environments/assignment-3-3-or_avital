@@ -32,7 +32,9 @@
                 >Favorite Recipes</b-dropdown-item
               >
               <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
-              <b-dropdown-item href="#">Family Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'familyRecipes' }"
+                >Family Recipes</b-dropdown-item
+              >
             </b-nav-item-dropdown>
             <b-nav-item @click="LogoutFunc">LogOut</b-nav-item>
           </b-navbar-nav>
