@@ -6,8 +6,10 @@ import VueCookies from "vue-cookies";
 
 import routes from "./routes";
 import VueRouter from "vue-router";
-Vue.use(VueRouter);
+
 Vue.use(VueCookies);
+
+Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
@@ -41,7 +43,6 @@ import {
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 
-axios.defaults.withCredentials = true;
 axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
@@ -70,18 +71,18 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  base_url: "https://assignment-3-2-avital.herokuapp.com",
+  BASE_URL: "https://assignment-3-2-avital.herokuapp.com",
   username: localStorage.username,
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
-    // console.log($cookie.get("session")); // add
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
     this.username = undefined;
+    //Vue.$cookies.remove("session");
   },
 };
 console.log(shared_data);

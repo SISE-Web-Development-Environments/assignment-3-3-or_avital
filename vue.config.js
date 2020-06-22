@@ -1,9 +1,9 @@
 module.exports = {
-  configureWebpack: {
-    devtool: "source-map",
-  },
+  // configureWebpack: {
+  //  devtool: "source-map",
+  // },
   devServer: {
-    host: "localhost",
+    //   host: "localhost",
   },
   // publicPath: process.env.NODE_ENV === "production" ? "/LAB12/" : "/"
 };

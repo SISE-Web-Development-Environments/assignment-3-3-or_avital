@@ -2,6 +2,7 @@
   <b-container class="container">
     <Header />
     <h1 class="title">Main Page</h1>
+    {{ this.$cookies.get("session") }}
     <b-row>
       <b-col class="col">
         <RecipePreviewList
@@ -18,7 +19,7 @@
         >
       </b-col>
       <b-col class="col">
-        <div v-if="!$root.store.username">
+        <div v-if="!$cookies.get('session')">
           <!-- User Not Connected!!!!! -->
           <Login title="log in" />
         </div>
@@ -28,7 +29,7 @@
             recipeType="last"
             :class="{
               RandomRecipes: true,
-              blur: !$root.store.username,
+              blur: !$cookies.get('session'),
               center: true,
             }"
             disabled

@@ -94,17 +94,20 @@ export default {
     async Login() {
       try {
         const response = await this.axios.post(
+          //"http://localhost:3000/user/login",
+          //this.$root.base_url + "/user/login",
           "https://assignment-3-2-avital.herokuapp.com/user/login",
           {
             username: this.form.username,
             password: this.form.password,
+            withCredentials: true,
           }
         );
         // console.log(response);
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-        this.$router.push("/").catch(() => {}); // dell catch ???
+        this.$router.push("/").catch(); // dell catch ???
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
