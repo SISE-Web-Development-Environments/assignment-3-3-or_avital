@@ -60,16 +60,16 @@ export default {
             //
           );
           recipe_dict = response.data;
+          this.recipes = [];
+          for (var recipe_id in recipe_dict) {
+            var currRecipe = recipe_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.recipes.push(currRecipe);
+          }
+        } else if (type && type == "search" && this.recipeType == type) {
+          this.recipes = this.$parent.search_results;
+          console.log(recipe_dict);
         }
-        // console.log(response);
-        // const recipe_dict = response.data;
-        this.recipes = [];
-        for (var recipe_id in recipe_dict) {
-          var currRecipe = recipe_dict[recipe_id];
-          currRecipe.id = recipe_id;
-          this.recipes.push(currRecipe);
-        }
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }

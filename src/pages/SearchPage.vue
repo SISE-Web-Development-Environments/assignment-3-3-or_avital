@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :key="searchkey">
     <h1>Search Page</h1>
     <b-row>
       <b-col>
@@ -72,13 +72,22 @@
       </b-form-select>
     </b-row>
     <b-row v-if="search_results.length">
-      <strong>{{ search_results }}</strong>
+      <RecipePreviewTable
+        title="Browse for favorite Recipes"
+        recipeType="search"
+        class="FavoriteRecipes center"
+      />
     </b-row>
   </div>
 </template>
 
 <script>
+import RecipePreviewTable from "../components/RecipePreviewTable.vue";
 export default {
+  components: {
+    RecipePreviewTable,
+    // Header,
+  },
   data() {
     return {
       cuisine_selected: null,
@@ -140,9 +149,10 @@ export default {
         { value: "Wheat", text: "Wheat" },
       ],
       num_of_recipes: 5,
-      search_results: "",
+      search_results: [],
       search_string: "",
       sortby_selected: null,
+      searchkey: 0,
     };
   },
   methods: {
@@ -187,6 +197,7 @@ export default {
           }
           this.search_results.push(currRecipe);
         }
+        this.searchkey = this.searchkey + 1;
       } catch (error) {
         console.log(error.response);
       }
