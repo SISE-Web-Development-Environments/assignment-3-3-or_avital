@@ -302,7 +302,8 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://assignment-3-2-avital.herokuapp.com/user/register",
+          "http://localhost:3000/user/register",
+          //"https://assignment-3-2-avital.herokuapp.com/user/register",
           {
             username: this.form.username,
             password: this.form.password,
@@ -311,6 +312,7 @@ export default {
             country: this.form.country,
             email: this.form.email,
             imageUrl: this.form.profile_image_url,
+            withCredentials: true,
           }
         );
         this.$router.push("/login");

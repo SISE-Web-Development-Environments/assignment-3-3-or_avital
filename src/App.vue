@@ -4,14 +4,14 @@
       <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
       <router-link :to="{ name: 'about' }">About</router-link>|
-      {{ !$root.store.username }}
-      <span v-if="!$root.store.username">
+      {{ !$cookies.get("session") }}
+      <span v-if="!$cookies.get('session')">
         Guest:
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
       </span>
       <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>|
+        {{ $cookies.get("session") }}: <button @click="Logout">Logout</button>|
       </span>
     </div>
     <router-view />

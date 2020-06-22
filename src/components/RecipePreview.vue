@@ -60,7 +60,7 @@
               height="40px"
               width="40px"
           /></b-col>
-          <b-col v-if="$root.store.username">
+          <b-col v-if="$cookies.get('session')">
             <b-button>
               <!-- see button only if not in favorties already-->
               add to favorites

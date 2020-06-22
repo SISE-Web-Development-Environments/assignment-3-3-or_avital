@@ -54,7 +54,8 @@ export default {
         var recipe_dict;
         if (type && type == "favorite" && this.recipeType == type) {
           const response = await this.axios.get(
-            "https://assignment-3-2-avital.herokuapp.com/profile/getFavoriteRecipes",
+            "http://localhost:3000/profile/getFavoriteRecipes",
+            //"https://assignment-3-2-avital.herokuapp.com/profile/getFavoriteRecipes",
             { withCredentials: true }
             //
           );
