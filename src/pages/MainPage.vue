@@ -2,7 +2,6 @@
   <b-container class="container" :key="update_key">
     <Header />
     <h1 class="title">Main Page</h1>
-    {{ this.$cookies.get("session") }}
     <b-row>
       <b-col class="col">
         <RecipePreviewList
