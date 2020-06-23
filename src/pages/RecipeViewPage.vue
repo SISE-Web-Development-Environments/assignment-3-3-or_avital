@@ -1,39 +1,15 @@
 <template>
-  <div class="container">
+  <div>
     <Header />
-    <br />
-    <div v-if="recipe">
-      <b-row>
-        <b-col>
-          <img :src="recipe.image" class="center" />
-        </b-col>
-        <b-col>
-          <b-row align-v="center">
-            <h1>{{ recipe.title }}</h1>
-            <img
-              v-if="$cookies.get('session') && recipe.watched"
-              :src="require('@/images/eye.png')"
-              height="40px"
-              width="40px"
-            />
-          </b-row>
-          <b-row>
-            <img
-              :src="require('@/images/clock_icon.png')"
-              height="20px"
-              width="20px"
-            />Total time: {{ recipe.readyInMinutes }} minutes
-          </b-row>
-          <b-row v-if="recipe.aggregateLikes">
-            <img
-              :src="require('@/images/heart.png')"
-              height="20px"
-              width="20px"
-            />
-            {{ recipe.aggregateLikes }} likes
-          </b-row>
-          <b-row>
-            <b-col :class="{ notSomething: !recipe.vegetarian }">
+    <div class="container">
+      <div v-if="recipe">
+        <b-row>
+          <b-col>
+            <img :src="recipe.image" class="center" />
+          </b-col>
+          <b-col>
+            <b-row align-v="center">
+              <h1>{{ recipe.title }}</h1>
               <img
                 v-if="$cookies.get('session') && recipe.watched"
                 :src="require('@/images/eye.png')"
@@ -48,7 +24,7 @@
                 width="20px"
               />Total time: {{ recipe.readyInMinutes }} minutes
             </b-row>
-            <b-row>
+            <b-row v-if="recipe.aggregateLikes">
               <img
                 :src="require('@/images/heart.png')"
                 height="20px"
@@ -119,7 +95,7 @@ export default {
   components: {
     Ingredients: Ingredients,
     Instructions: Instructions,
-    Header,
+    Header: Header,
   },
   data() {
     return {
