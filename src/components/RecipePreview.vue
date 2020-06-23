@@ -64,7 +64,7 @@
             height="40px"
             width="40px"
         /></b-col>
-        <b-col v-if="$cookies.get('session')">
+        <b-col v-if="$cookies.get('session') && recipe.aggregateLikes">
           <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
             <p v-if="!recipe.favorite">add to favorites</p>
             <p v-else>already in favorites</p>
