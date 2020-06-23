@@ -20,7 +20,12 @@ const routes = [
   {
     path: "/familyRecipes",
     name: "familyRecipes",
-    component: () => import("./pages/FamilyRecipePage.vue"),
+    component: () => import("./pages/FamilyRecipePage"),
+  },
+  {
+    path: "/fullFamilyRecipe/:recipeId",
+    name: "fullFamilyRecipe",
+    component: () => import("./pages/FullFamilyRecipePage"),
   },
   {
     path: "/login",

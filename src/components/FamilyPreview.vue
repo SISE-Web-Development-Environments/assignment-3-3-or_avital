@@ -7,7 +7,7 @@
     text-variant="black"
   >
     <router-link
-      :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+      :to="{ name: 'fullFamilyRecipe', params: { recipeId: recipe.id } }"
       class="recipe-preview"
     >
       <b-card-img :src="recipe.image" img-top class="image" />
