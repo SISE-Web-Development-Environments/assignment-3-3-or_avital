@@ -106,9 +106,10 @@ export default {
         // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-        //this.$router.push("/").catch(); // dell catch ???
 
-        this.$emit("loggedin", this.form.username);
+        this.$router.push({ name: "main" }).catch((e) => {
+          this.$emit("loggedin", this.form.username);
+        });
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;

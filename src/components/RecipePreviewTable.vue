@@ -60,6 +60,12 @@ export default {
             //
           );
           recipe_dict = response.data;
+          this.recipes = [];
+          for (var recipe_id in recipe_dict) {
+            var currRecipe = recipe_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.recipes.push(currRecipe);
+          }
         } else if (type && type == "personal" && this.recipeType == type) {
           const response_personal_recipes = await this.axios.get(
             "http://localhost:3000/profile/getAllPersonalRecipesSummary",
@@ -72,16 +78,15 @@ export default {
           //   recipe.type = "prsonal";//!!!!!!!!!!!!!!!!!!!!!!!!!!
           //   console.log("in recupe table: "+recipe.type);
           // });
+          this.recipes = [];
+          for (var recipe_id in recipe_dict) {
+            var currRecipe = recipe_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.recipes.push(currRecipe);
+          }
+        } else if (type && type == "search" && this.recipeType == type) {
+          this.recipes = this.$parent.search_results;
         }
-        // console.log(response);
-        // const recipe_dict = response.data;
-        this.recipes = [];
-        for (var recipe_id in recipe_dict) {
-          var currRecipe = recipe_dict[recipe_id];
-          currRecipe.id = recipe_id;
-          this.recipes.push(currRecipe);
-        }
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }

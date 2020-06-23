@@ -1,84 +1,98 @@
 <template>
-  <div class="container">
-    <h1>Search Page</h1>
-    <b-row>
-      <b-col>
-        <b-form-input
-          placeholder="Search"
-          v-model="search_string"
-        ></b-form-input>
-        <div class="mt-3">
-          <strong>{{ search_string }}</strong>
-        </div>
-      </b-col>
-      <b-col>
-        <b-form-select v-model="num_of_recipes">
-          <b-form-select-option :value="5">5</b-form-select-option>
-          <b-form-select-option :value="10">10</b-form-select-option>
-          <b-form-select-option :value="15">15</b-form-select-option>
+  <div>
+    <Header />
+    <div class="container" :key="searchkey">
+      <h1>Search Page</h1>
+      <b-row>
+        <b-col>
+          <b-form-input
+            placeholder="Search"
+            v-model="search_string"
+          ></b-form-input>
+          <div class="mt-3">
+            <strong>{{ search_string }}</strong>
+          </div>
+        </b-col>
+        <b-col>
+          <b-form-select v-model="num_of_recipes">
+            <b-form-select-option :value="5">5</b-form-select-option>
+            <b-form-select-option :value="10">10</b-form-select-option>
+            <b-form-select-option :value="15">15</b-form-select-option>
+          </b-form-select>
+          <div class="mt-3">
+            Selected: <strong>{{ num_of_recipes }}</strong>
+          </div>
+        </b-col>
+        <b-col>
+          <b-form-select v-model="cuisine_selected" :options="cuisines">
+          </b-form-select>
+          <div class="mt-3">
+            Selected: <strong>{{ cuisine_selected }}</strong>
+          </div>
+        </b-col>
+        <b-col>
+          <b-form-select v-model="diet_selected" :options="diets">
+          </b-form-select>
+          <div class="mt-3">
+            Selected: <strong>{{ diet_selected }}</strong>
+          </div></b-col
+        >
+        <b-col>
+          <b-form-select v-model="intolerance_selected" :options="intolerances">
+          </b-form-select>
+          <div class="mt-3">
+            Selected: <strong>{{ intolerance_selected }}</strong>
+          </div>
+        </b-col>
+        <b-col>
+          <b-button @click="SendSearch" :disabled="!search_string.length">
+            Send
+          </b-button>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-form-select
+          v-model="sortby_selected"
+          @change="sortby"
+          :disabled="!search_results || !search_results.length"
+        >
+          <b-form-select-option :value="null" disabled
+            >--Sort By --</b-form-select-option
+          >
+          <b-form-select-option value="time_high"
+            >Sort by time high to low</b-form-select-option
+          >
+          <b-form-select-option value="time_low"
+            >Sort by time low to high</b-form-select-option
+          >
+          <b-form-select-option value="like_high"
+            >sort by popular high to low</b-form-select-option
+          >
+          <b-form-select-option value="like_low"
+            >sort by popular low to how</b-form-select-option
+          >
         </b-form-select>
-        <div class="mt-3">
-          Selected: <strong>{{ num_of_recipes }}</strong>
-        </div>
-      </b-col>
-      <b-col>
-        <b-form-select v-model="cuisine_selected" :options="cuisines">
-        </b-form-select>
-        <div class="mt-3">
-          Selected: <strong>{{ cuisine_selected }}</strong>
-        </div>
-      </b-col>
-      <b-col>
-        <b-form-select v-model="diet_selected" :options="diets">
-        </b-form-select>
-        <div class="mt-3">
-          Selected: <strong>{{ diet_selected }}</strong>
-        </div></b-col
-      >
-      <b-col>
-        <b-form-select v-model="intolerance_selected" :options="intolerances">
-        </b-form-select>
-        <div class="mt-3">
-          Selected: <strong>{{ intolerance_selected }}</strong>
-        </div>
-      </b-col>
-      <b-col>
-        <b-button @click="SendSearch" :disabled="!search_string.length">
-          Send
-        </b-button>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-form-select
-        v-model="sortby_selected"
-        @change="sortby"
-        :disabled="!search_results || !search_results.length"
-      >
-        <b-form-select-option :value="null" disabled
-          >--Sort By --</b-form-select-option
-        >
-        <b-form-select-option value="time_high"
-          >Sort by time high to low</b-form-select-option
-        >
-        <b-form-select-option value="time_low"
-          >Sort by time low to high</b-form-select-option
-        >
-        <b-form-select-option value="like_high"
-          >sort by popular high to low</b-form-select-option
-        >
-        <b-form-select-option value="like_low"
-          >sort by popular low to how</b-form-select-option
-        >
-      </b-form-select>
-    </b-row>
-    <b-row v-if="search_results.length">
-      <strong>{{ search_results }}</strong>
-    </b-row>
+      </b-row>
+      <b-row v-if="search_results.length">
+        <RecipePreviewTable
+          title="Browse for favorite Recipes"
+          recipeType="search"
+          class="FavoriteRecipes center"
+        />
+      </b-row>
+    </div>
   </div>
 </template>
 
 <script>
+import RecipePreviewTable from "../components/RecipePreviewTable.vue";
+import Header from "../components/Header";
+
 export default {
+  components: {
+    RecipePreviewTable,
+    Header,
+  },
   data() {
     return {
       cuisine_selected: null,
@@ -140,9 +154,10 @@ export default {
         { value: "Wheat", text: "Wheat" },
       ],
       num_of_recipes: 5,
-      search_results: "",
+      search_results: [],
       search_string: "",
       sortby_selected: null,
+      searchkey: 0,
     };
   },
   methods: {
@@ -187,7 +202,11 @@ export default {
           }
           this.search_results.push(currRecipe);
         }
+
+        //this.$router.push({ name: "search" }).catch((e) => {});
+        this.searchkey = this.searchkey + 1;
       } catch (error) {
+        console.log(error);
         console.log(error.response);
       }
     },

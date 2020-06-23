@@ -1,48 +1,50 @@
 <template>
-  <b-container class="container" :key="update_key">
+  <div>
     <Header />
-    <h1 class="title">Main Page</h1>
-    <b-row>
-      <b-col class="col">
-        <RecipePreviewList
-          title="Browse for new Recipes to Cook"
-          recipeType="random"
-          class="RandomRecipes center"
-        />
-        <br />
-        <router-link v-if="!$cookies.get('session')" to="/login" tag="button"
-          >You need to Login to vue this</router-link
-        >
-        <b-button variant="info" @click="NewRandomRecipes"
-          >Watch 3 New Recipes!</b-button
-        >
-      </b-col>
-      <b-col class="col">
-        <div v-if="!$cookies.get('session')">
-          <!-- User Not Connected!!!!! -->
-          <Login title="log in" @loggedin="updateRightCol" />
-        </div>
-        <div v-else>
+    <b-container class="container" :key="update_key">
+      <h1 class="title">Main Page</h1>
+      <b-row>
+        <b-col class="col">
           <RecipePreviewList
-            title="Last Viewed Recipes"
-            recipeType="last"
-            :class="{
-              RandomRecipes: true,
-              blur: !$cookies.get('session'),
-              center: true,
-            }"
-            disabled
-          ></RecipePreviewList>
-        </div>
-      </b-col>
+            title="Browse for new Recipes to Cook"
+            recipeType="random"
+            class="RandomRecipes center"
+          />
+          <br />
+          <router-link v-if="!$cookies.get('session')" to="/login" tag="button"
+            >You need to Login to vue this</router-link
+          >
+          <b-button variant="info" @click="NewRandomRecipes"
+            >Watch 3 New Recipes!</b-button
+          >
+        </b-col>
+        <b-col class="col">
+          <div v-if="!$cookies.get('session')">
+            <!-- User Not Connected!!!!! -->
+            <Login title="log in" @loggedin="updateRightCol" />
+          </div>
+          <div v-else>
+            <RecipePreviewList
+              title="Last Viewed Recipes"
+              recipeType="last"
+              :class="{
+                RandomRecipes: true,
+                blur: !$cookies.get('session'),
+                center: true,
+              }"
+              disabled
+            ></RecipePreviewList>
+          </div>
+        </b-col>
 
-      <!-- <div
+        <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
       Centeredasdasdad
     </div>-->
-    </b-row>
-  </b-container>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -65,7 +67,6 @@ export default {
       this.$emit("updateRecipes", "random");
     },
     updateRightCol() {
-      console.log("right col");
       this.update_key = this.update_key + 1;
     },
   },

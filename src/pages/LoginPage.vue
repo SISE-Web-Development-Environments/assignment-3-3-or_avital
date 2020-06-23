@@ -1,15 +1,19 @@
 <template>
-  <div class="container">
-    <h1 class="title">Login page</h1>
-    <Login />
+  <div>
+    <Header />
+    <div class="container">
+      <Login />
+    </div>
   </div>
 </template>
 
 <script>
+import Header from "../components/Header";
 import Login from "../components/Login";
 export default {
   components: {
     Login,
+    Header,
   },
 };
 </script>
