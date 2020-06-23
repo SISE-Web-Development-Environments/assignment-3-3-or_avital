@@ -7,7 +7,10 @@
     text-variant="black"
   >
     <router-link
-      :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+      :to="{
+        name: 'fullRecipePage',
+        params: { recipeId: recipe.id, likeCount: recipe.aggregateLikes },
+      }"
       class="recipe-preview"
     >
       <b-card-img
@@ -31,7 +34,7 @@
           />
           {{ recipe.readyInMinutes }} minutes
         </b-col>
-        <b-col>
+        <b-col v-if="recipe.aggregateLikes">
           <img
             :src="require('@/images/heart.png')"
             height="20px"
@@ -61,7 +64,7 @@
             height="40px"
             width="40px"
         /></b-col>
-        <b-col v-if="$cookies.get('session')">
+        <b-col v-if="$cookies.get('session') && recipe.aggregateLikes">
           <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
             <p v-if="!recipe.favorite">add to favorites</p>
             <p v-else>already in favorites</p>
@@ -84,6 +87,13 @@ export default {
       type: Object,
       required: true,
     },
+    // recipeType: {
+    //   type: String,
+    //   required: true,
+    // },
+  },
+  mounted() {
+    // this.updateType(this.recipeType);
   },
   methods: {
     async addRecipeToFavortie() {
@@ -102,6 +112,7 @@ export default {
       }
     },
   },
+  updateType() {},
 };
 </script>
 

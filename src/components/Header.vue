@@ -28,13 +28,9 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item :to="{ name: 'favoriteRecipes' }"
-                >Favorite Recipes</b-dropdown-item
-              >
-              <b-dropdown-item href="#">Personal Recipes</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'familyRecipes' }"
-                >Family Recipes</b-dropdown-item
-              >
+              <b-dropdown-item :to="{ name: 'favoriteRecipes' }">Favorite Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'personalRecipes' }">Personal Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'familyRecipes' }">Family Recipes</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item @click="LogoutFunc">LogOut</b-nav-item>
           </b-navbar-nav>
