@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <Header />
+    <br />
     <div v-if="recipe">
       <b-row>
         <b-col>
@@ -22,7 +24,7 @@
               width="20px"
             />Total time: {{ recipe.readyInMinutes }} minutes
           </b-row>
-          <b-row>
+          <b-row v-if="recipe.aggregateLikes">
             <img
               :src="require('@/images/heart.png')"
               height="20px"
@@ -84,68 +86,97 @@
 <script>
 import Ingredients from "../components/Ingredients";
 import Instructions from "../components/Instructions";
-
+import Header from "../components/Header";
 export default {
   components: {
     Ingredients: Ingredients,
     Instructions: Instructions,
+    Header,
   },
   data() {
     return {
       recipe: null,
     };
   },
+  mounted() {
+    // this.checkType(this.recipeType);
+  },
   async created() {
     try {
       let response;
-      // response = this.$route.params.response;
-      response = await this.axios.get(
-        "http://localhost:3000/recipe/search/id/" +
-          //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
-          this.$route.params.recipeId,
-        {
-          withCredentials: true,
-        }
-      );
-
-      // console.log("response.status", response.status);
-      if (response.status !== 200) {
-        this.$router.replace("/NotFound");
-      }
-      var recipe_dict_personal;
-      if (this.$cookies.get("session")) {
-        // user connected
-        const addToWatched = await this.axios.post(
-          "http://localhost:3000/profile/addRecipeToWatched",
-          //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+      console.log(this.$route.params.recipeId);
+      console.log(this.$route.params.likeCount);
+      if (!this.$route.params.likeCount) {
+        console.log("is personal recipe! ");
+        response = await this.axios.get(
+          // /profile/getFullPersonalRecipe/id/:id:
+          "http://localhost:3000/profile/getFullPersonalRecipe/id/" +
+            //"https://assignment-3-2-avital.herokuapp.com/profile/getFullPersonalRecipeid/id/" +
+            this.$route.params.recipeId,
           {
-            recipeID: this.$route.params.recipeId,
+            withCredentials: true,
+          }
+        );
+        // console.log("response.status", response.status);
+        if (response.status !== 200) {
+          this.$router.replace("/NotFound");
+        }
+        console.log("succes get recupe from DB"); // dell
+
+        let _recipe = response.data;
+        this.recipe = _recipe;
+      } else {
+        console.log("not personal recipe! ");
+        response = await this.axios.get(
+          ///recipes/search/id/:recipeID
+          "http://localhost:3000/recipe/search/id/" +
+            //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+            this.$route.params.recipeId,
+          {
             withCredentials: true,
           }
         );
 
-        const response_personal = await this.axios.get(
-          "http://localhost:3000/profile/recipeInfo/[" +
-            // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
-            this.$route.params.recipeId +
-            "]",
-          { withCredentials: true }
-        );
-        recipe_dict_personal = response_personal.data;
-      }
+        // console.log("response.status", response.status);
+        if (response.status !== 200) {
+          this.$router.replace("/NotFound");
+        }
+        var recipe_dict_personal;
+        if (this.$cookies.get("session")) {
+          // user connected
+          const addToWatched = await this.axios.post(
+            "http://localhost:3000/profile/addRecipeToWatched",
+            //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+            {
+              recipeID: this.$route.params.recipeId,
+              withCredentials: true,
+            }
+          );
 
-      let _recipe = response.data;
-      this.recipe = _recipe;
+          const response_personal = await this.axios.get(
+            "http://localhost:3000/profile/recipeInfo/[" +
+              // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+              this.$route.params.recipeId +
+              "]",
+            { withCredentials: true }
+          );
+          recipe_dict_personal = response_personal.data;
+        }
 
-      if (recipe_dict_personal) {
-        this.recipe.watched = recipe_dict_personal[this.recipe.id].watched;
-        this.recipe.favorite = recipe_dict_personal[this.recipe.id].favorite;
+        let _recipe = response.data;
+        this.recipe = _recipe;
+
+        if (recipe_dict_personal) {
+          this.recipe.watched = recipe_dict_personal[this.recipe.id].watched;
+          this.recipe.favorite = recipe_dict_personal[this.recipe.id].favorite;
+        }
       }
     } catch (error) {
       console.log(error);
     }
   },
   methods: {
+    checkType() {},
     async addRecipeToFavortie() {
       try {
         this.recipe.favorite = true;

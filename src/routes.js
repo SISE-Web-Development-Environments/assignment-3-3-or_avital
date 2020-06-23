@@ -39,7 +39,7 @@ const routes = [
   },
   {
     path: "/recipe/:recipeId",
-    name: "recipe",
+    name: "fullRecipePage",
     component: () => import("./pages/RecipeViewPage"),
   },
   {

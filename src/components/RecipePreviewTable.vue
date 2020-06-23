@@ -68,6 +68,10 @@ export default {
             //
           );
           recipe_dict = response_personal_recipes.data;
+          //  recipe_dict.forEach(function(recipe) {
+          //   recipe.type = "prsonal";//!!!!!!!!!!!!!!!!!!!!!!!!!!
+          //   console.log("in recupe table: "+recipe.type);
+          // });
         }
         // console.log(response);
         // const recipe_dict = response.data;
