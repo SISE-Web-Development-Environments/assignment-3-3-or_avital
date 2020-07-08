@@ -59,11 +59,33 @@ export default {
             { withCredentials: true }
             //
           );
+
           recipe_dict = response.data;
+          var recipe_dict_personal_info;
+
+          if (this.$cookies.get("session")) {
+            // if conect
+            var recipe_ids = Object.keys(recipe_dict);
+            const response_personal = await this.axios.get(
+              "http://localhost:3000/profile/recipeInfo/[" +
+                //"https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
+                recipe_ids +
+                "]",
+              { withCredentials: true }
+            );
+            recipe_dict_personal_info = response_personal.data;
+          }
+          //
           this.recipes = [];
           for (var recipe_id in recipe_dict) {
             var currRecipe = recipe_dict[recipe_id];
             currRecipe.id = recipe_id;
+            if (recipe_dict_personal_info) {
+              // not undifiend
+              currRecipe.watched = recipe_dict_personal_info[recipe_id].watched;
+              currRecipe.favorite =
+                recipe_dict_personal_info[recipe_id].favorite;
+            }
             this.recipes.push(currRecipe);
           }
         } else if (type && type == "personal" && this.recipeType == type) {
