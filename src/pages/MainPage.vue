@@ -21,7 +21,7 @@
         <b-col class="col">
           <div v-if="!$cookies.get('session')">
             <!-- User Not Connected!!!!! -->
-            <Login title="log in" @loggedin="updateRightCol" />
+            <Login title="log in" @loggedin="updateHomePage" />
           </div>
           <div v-else>
             <RecipePreviewList
@@ -66,7 +66,7 @@ export default {
     NewRandomRecipes() {
       this.$emit("updateRecipes", "random");
     },
-    updateRightCol() {
+    updateHomePage() {
       this.update_key = this.update_key + 1;
     },
   },
