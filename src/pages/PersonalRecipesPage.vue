@@ -20,6 +20,11 @@ export default {
     RecipePreviewTable,
     Header,
   },
+  created() {
+    if (!this.$cookies.get("session")) {
+      this.$router.push({ name: "main" });
+    }
+  },
 };
 </script>
 

@@ -63,8 +63,6 @@
                 <p v-else>already in favorites</p>
               </b-button>
             </b-row>
-
-            <div>Watched</div>
           </b-col>
         </b-row>
         <div class="recipe-body">
@@ -110,7 +108,7 @@ export default {
       let response;
       console.log(this.$route.params.recipeId);
       console.log(this.$route.params.likeCount);
-      if (!this.$route.params.likeCount) {
+      if (!(this.$route.params.likeCount >= 0)) {
         console.log("is personal recipe! ");
         response = await this.axios.get(
           // /profile/getFullPersonalRecipe/id/:id:

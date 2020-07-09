@@ -29,22 +29,26 @@ export default {
 
   async created() {
     try {
-      let response;
-      // response = this.$route.params.response;
-      response = await this.axios.get(
-        "http://localhost:3000/profile/getAllFamilyRecipesSummary",
-        //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
-        {
-          withCredentials: true,
-        }
-      );
+      if (!this.$cookies.get("session")) {
+        this.$router.push({ name: "main" });
+      } else {
+        let response;
+        // response = this.$route.params.response;
+        response = await this.axios.get(
+          "http://localhost:3000/profile/getAllFamilyRecipesSummary",
+          //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+          {
+            withCredentials: true,
+          }
+        );
 
-      var family_dict = response.data;
-      this.family_recipes = [];
-      for (var recipe_id in family_dict) {
-        var currRecipe = family_dict[recipe_id];
-        currRecipe.id = recipe_id;
-        this.family_recipes.push(currRecipe);
+        var family_dict = response.data;
+        this.family_recipes = [];
+        for (var recipe_id in family_dict) {
+          var currRecipe = family_dict[recipe_id];
+          currRecipe.id = recipe_id;
+          this.family_recipes.push(currRecipe);
+        }
       }
     } catch (error) {
       console.log(error);

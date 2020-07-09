@@ -6,7 +6,7 @@
       <b-row>
         <b-col>
           <b-form-input
-            placeholder="Search"
+            :placeholder="search_placeholder"
             v-model="search_string"
           ></b-form-input>
           <div class="mt-3">
@@ -160,6 +160,19 @@ export default {
       searchkey: 0,
     };
   },
+  mounted() {
+    if (this.$cookies.get("session")) {
+      if (localStorage.search) {
+        let searchObj = JSON.parse(localStorage.search);
+        this.search_string = searchObj.search_string;
+        this.num_of_recipes = searchObj.num_of_recipes;
+        this.cuisine_selected = searchObj.cuisine_selected;
+        this.diet_selected = searchObj.diet_selected;
+        this.intolerance_selected = searchObj.intolerance_selected;
+        this.search_results = searchObj.search_results;
+      }
+    }
+  },
   methods: {
     async SendSearch() {
       console.log("send search");
@@ -205,6 +218,18 @@ export default {
 
         //this.$router.push({ name: "search" }).catch((e) => {});
         this.searchkey = this.searchkey + 1;
+        if (this.$cookies.get("session")) {
+          let searchObj = Object();
+          searchObj.search_string = this.search_string;
+          searchObj.num_of_recipes = this.num_of_recipes;
+          searchObj.cuisine_selected = this.cuisine_selected;
+          searchObj.diet_selected = this.diet_selected;
+          searchObj.intolerance_selected = this.intolerance_selected;
+          searchObj.search_results = this.search_results;
+          localStorage.search = JSON.stringify(searchObj);
+          //JSON.stringify(testObject)
+          // this.search_defualt = localStorage.search;
+        }
       } catch (error) {
         console.log(error);
         console.log(error.response);
@@ -265,6 +290,13 @@ export default {
       }
 
       return params;
+    },
+    search_placeholder() {
+      if (this.search_defualt) {
+        return this.search_defualt;
+      } else {
+        return "Search";
+      }
     },
   },
 };
