@@ -26,7 +26,9 @@ export default {
     Header,
   },
   mounted() {
-    // this.updateRecipes(this.recipeType);
+    if (!this.$cookies.get("session")) {
+      this.$router.push({ name: "main" });
+    }
   },
   methods: {},
 };

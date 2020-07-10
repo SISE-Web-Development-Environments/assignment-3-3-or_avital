@@ -52,7 +52,12 @@ export default {
     async updateRecipes(type) {
       try {
         var recipe_dict;
-        if (type && type == "favorite" && this.recipeType == type) {
+        if (
+          type &&
+          type == "favorite" &&
+          this.recipeType == type &&
+          this.$cookies.get("session")
+        ) {
           const response = await this.axios.get(
             "http://localhost:3000/profile/getFavoriteRecipes",
             //"https://assignment-3-2-avital.herokuapp.com/profile/getFavoriteRecipes",
@@ -88,7 +93,12 @@ export default {
             }
             this.recipes.push(currRecipe);
           }
-        } else if (type && type == "personal" && this.recipeType == type) {
+        } else if (
+          type &&
+          type == "personal" &&
+          this.recipeType == type &&
+          this.$cookies.get("session")
+        ) {
           const response_personal_recipes = await this.axios.get(
             "http://localhost:3000/profile/getAllPersonalRecipesSummary",
             //"https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary",

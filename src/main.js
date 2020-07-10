@@ -74,6 +74,7 @@ Vue.config.productionTip = false;
 const shared_data = {
   BASE_URL: "https://assignment-3-2-avital.herokuapp.com",
   username: localStorage.username,
+  //search: localStorage.search,
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
@@ -82,8 +83,13 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("search");
     this.username = undefined;
     Vue.$cookies.remove("session");
+  },
+  savesearch(searchstr) {
+    localStorage.setItem("search", searchstr);
+    //this.$session.set("search", searchstr);
   },
 };
 console.log(shared_data);

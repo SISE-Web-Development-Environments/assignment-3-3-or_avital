@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div :key="update_key">
     <Header />
-    <b-container class="container" :key="update_key">
+    <b-container class="container">
       <h1 class="title">Main Page</h1>
       <b-row>
         <b-col class="col">
