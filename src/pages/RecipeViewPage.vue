@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="container">
+    <div class="container" :key="pagekey">
       <div v-if="recipe">
         <b-row>
           <b-col>
@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       recipe: null,
+      pagekey: 1,
     };
   },
   mounted() {
@@ -190,6 +191,7 @@ export default {
             withCredentials: true,
           }
         );
+        this.pagekey = this.pagekey + 1;
       } catch (error) {
         console.log(error.response);
       }
