@@ -1,15 +1,20 @@
 <template>
-  <b-container class="container">
+  <div>
     <Header />
+    <b-container class="container">
     <h1 class="title">My personal recipes</h1>
-    <b-col class="col">
+    <b-row>
+      <b-col class="col">
       <RecipePreviewTable
         title="Browse for personal Recipes"
         recipeType="personal"
         class="PersonalRecipes center"
       />
     </b-col>
+    </b-row>
+    
   </b-container>
+  </div>
 </template>
 
 <script>
