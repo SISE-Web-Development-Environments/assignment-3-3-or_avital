@@ -65,10 +65,17 @@
             width="40px"
         /></b-col>
       </b-row>
-      <b-row v-if="$cookies.get('session') && recipe.aggregateLikes >= 0">
-        <b-button :disabled="recipe.favorite" @click="addRecipeToFavortie">
-          <p v-if="!recipe.favorite">add to favorites</p>
-          <p v-else>already in favorites</p>
+      <b-row
+        v-if="$cookies.get('session') && recipe.aggregateLikes >= 0"
+        class="row justify-content-center"
+      >
+        <b-button
+          :disabled="recipe.favorite"
+          @click="addRecipeToFavortie"
+          class="favorite_btn"
+        >
+          <a v-if="!recipe.favorite">add to favorites</a>
+          <a v-else>already in favorites</a>
         </b-button>
       </b-row>
     </b-card-body>
@@ -178,5 +185,10 @@ export default {
 
 .notSomething {
   opacity: 0.4;
+}
+
+.favorite_btn {
+  font-size: 14px;
+  padding: 5px 10px;
 }
 </style>

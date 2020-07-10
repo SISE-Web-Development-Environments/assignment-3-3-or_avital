@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="container">
+    <div class="container" :key="pagekey">
       <div v-if="recipe">
         <b-row>
           <b-col>
@@ -54,7 +54,7 @@
                   width="40px"
               /></b-col>
             </b-row>
-            <b-row v-if="$cookies.get('session')">
+            <b-row v-if="$cookies.get('session') && recipe.aggregateLikes >= 0">
               <b-button
                 :disabled="recipe.favorite"
                 @click="addRecipeToFavortie"
@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       recipe: null,
+      pagekey: 1,
     };
   },
   mounted() {
@@ -146,15 +147,16 @@ export default {
         var recipe_dict_personal;
         if (this.$cookies.get("session")) {
           // user connected
-          const addToWatched = await this.axios.post(
-            "http://localhost:3000/profile/addRecipeToWatched",
-            //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
-            {
-              recipeID: this.$route.params.recipeId,
-              withCredentials: true,
-            }
-          );
-
+          if (this.$route.params.likeCount >= 0) {
+            const addToWatched = await this.axios.post(
+              "http://localhost:3000/profile/addRecipeToWatched",
+              //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+              {
+                recipeID: this.$route.params.recipeId,
+                withCredentials: true,
+              }
+            );
+          }
           const response_personal = await this.axios.get(
             "http://localhost:3000/profile/recipeInfo/[" +
               // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
@@ -190,6 +192,7 @@ export default {
             withCredentials: true,
           }
         );
+        this.pagekey = this.pagekey + 1;
       } catch (error) {
         console.log(error.response);
       }
