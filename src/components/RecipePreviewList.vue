@@ -7,7 +7,7 @@
       </h3>
 
       <b-row class="row" v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r"  />
+        <RecipePreview class="recipePreview" :recipe="r" />
       </b-row>
     </b-col>
   </b-container>
@@ -60,6 +60,7 @@ export default {
         }
         var recipe_dict_personal;
         if (this.$cookies.get("session")) {
+          console.log("need to get to DB !! for recipe info "); // delll
           var recipe_ids = Object.keys(recipe_dict);
           const response_personal = await this.axios.get(
             "http://localhost:3000/profile/recipeInfo/[" +
