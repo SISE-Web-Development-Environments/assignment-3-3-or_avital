@@ -1,10 +1,11 @@
 <template>
   <b-card
-    class="card"
+    class="card mb-2"
     bg-variant="light"
     header-border-variant="danger"
     align="center"
     text-variant="black"
+    style="width: 300px;  height:100%"
   >
     <router-link
       :to="{
@@ -173,7 +174,7 @@ export default {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 1vw;
   margin: 0 auto;
   font-weight: bold;
 }

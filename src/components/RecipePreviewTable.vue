@@ -1,16 +1,14 @@
 <template>
   <b-container class="container">
-    <b-row>
-      <b-row class="row" v-for="i in countOfRow" :key="i">
-        <b-col
-          class="col"
-          cols="4"
-          v-for="r in CounterItemsInCurrRow(i)"
-          :key="r.id"
-        >
-          <RecipePreview :recipe="r"></RecipePreview>
-        </b-col>
-      </b-row>
+    <b-row class="row" v-for="i in countOfRow" :key="i">
+      <b-col
+        class="col"
+        cols="4"
+        v-for="r in CounterItemsInCurrRow(i)"
+        :key="r.id"
+      >
+        <RecipePreview :recipe="r"></RecipePreview>
+      </b-col>
     </b-row>
   </b-container>
 </template>

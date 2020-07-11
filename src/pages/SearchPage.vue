@@ -4,7 +4,7 @@
     <div class="container" :key="searchkey">
       <h1>Search Page</h1>
       <b-row>
-        <b-col>
+        <b-col cols="4">
           <b-form-input
             :placeholder="search_placeholder"
             v-model="search_string"
@@ -13,7 +13,7 @@
             <strong>{{ search_string }}</strong>
           </div>
         </b-col>
-        <b-col>
+        <b-col cols="1">
           <b-form-select v-model="num_of_recipes">
             <b-form-select-option :value="5">5</b-form-select-option>
             <b-form-select-option :value="10">10</b-form-select-option>
@@ -50,30 +50,33 @@
           </b-button>
         </b-col>
       </b-row>
-      <b-row>
-        <b-form-select
-          v-model="sortby_selected"
-          @change="sortby"
-          :disabled="!search_results || !search_results.length"
-        >
-          <b-form-select-option :value="null" disabled
-            >--Sort By --</b-form-select-option
+      <b-row class="row justify-content-center ">
+        <b-col cols="2">
+          <b-form-select
+            v-model="sortby_selected"
+            @change="sortby"
+            :disabled="!search_results || !search_results.length"
+            width="20px"
           >
-          <b-form-select-option value="time_high"
-            >Sort by time high to low</b-form-select-option
-          >
-          <b-form-select-option value="time_low"
-            >Sort by time low to high</b-form-select-option
-          >
-          <b-form-select-option value="like_high"
-            >sort by popular high to low</b-form-select-option
-          >
-          <b-form-select-option value="like_low"
-            >sort by popular low to how</b-form-select-option
-          >
-        </b-form-select>
+            <b-form-select-option :value="null" disabled
+              >--Sort By --</b-form-select-option
+            >
+            <b-form-select-option value="time_high"
+              >Sort by time high to low</b-form-select-option
+            >
+            <b-form-select-option value="time_low"
+              >Sort by time low to high</b-form-select-option
+            >
+            <b-form-select-option value="like_high"
+              >sort by popular high to low</b-form-select-option
+            >
+            <b-form-select-option value="like_low"
+              >sort by popular low to how</b-form-select-option
+            >
+          </b-form-select>
+        </b-col>
       </b-row>
-      <b-row v-if="search_results.length">
+      <b-row v-if="search_results.length" class="results">
         <RecipePreviewTable
           title="Browse for favorite Recipes"
           recipeType="search"
@@ -304,6 +307,10 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  max-width: 80%;
+  max-width: 95%;
+}
+
+.results {
+  padding: 10px;
 }
 </style>
