@@ -1,7 +1,9 @@
 <template>
   <b-container class="container">
     <b-row>
-      <b-row class="row" v-for="i in countOfRow" :key="i">
+      <div v-if="!Array.isArray(recipes) || !recipes.length"> you don't have recipes of this kind yet</div>
+      <div v-else>
+          <b-row class="row" v-for="i in countOfRow" :key="i">
         <b-col
           class="col"
           cols="4"
@@ -11,6 +13,8 @@
           <RecipePreview :recipe="r"></RecipePreview>
         </b-col>
       </b-row>
+      </div>
+      
     </b-row>
   </b-container>
 </template>

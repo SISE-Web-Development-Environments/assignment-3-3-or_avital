@@ -5,7 +5,7 @@
         {{ title }}
         <slot></slot>
       </h3>
-      <div v-if="recipeType=='last' && (!Array.isArray(recipes) || !recipes.length)"> you not have watched recipes yet</div>
+      <div v-if="recipeType=='last' && (!Array.isArray(recipes) || !recipes.length)"> you don't have watched recipes yet</div>
       <div v-else>
           <b-row class="row" v-for="r in recipes" :key="r.id">
           <RecipePreview class="recipePreview" :recipe="r" />
@@ -60,18 +60,11 @@ export default {
             { withCredentials: true }
             //
           );
-          //console.log(response_last3.data);
+          
           recipe_dict = response_last3.data;
-          console.log(recipe_dict);
-          // var have_favorites=true;
-          // if(!Array.isArray(recipe_dict) || !recipe_dict.length ){ //if user not have favorite recipes yet 
-          //   console.log("no have watch recipes yet ")
-          //   have_favorites=false;
-          //   console.log(this.recipes);
-          // }
+          console.log(recipe_dict); // dell !! 
         }
         var recipe_dict_personal;
-        // && have_favorites
         if (this.$cookies.get("session") ) {
           var recipe_ids = Object.keys(recipe_dict);
           const response_personal = await this.axios.get(
