@@ -4,9 +4,9 @@
     <b-container class="container">
       <h1 class="title">About Page</h1>
       <h2 class="content">
-        Hello, dear food lovers !
+        Hello, food lovers !
       </h2>
-      <h3 class="content">
+      <h5 class="content">
         Here the website developers, Or and Avital, welcome you to peace and
         appetite :) <br />
         Each of us is a known food lover. <br />
@@ -17,7 +17,7 @@
         Link to section 3.1- ...... <br />
         Link to Section 3.2 - ..... <br />
         Link to Part 3.3. - The web
-      </h3>
+      </h5>
     </b-container>
   </div>
 </template>
