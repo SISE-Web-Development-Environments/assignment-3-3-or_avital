@@ -1,6 +1,7 @@
 <template>
-  <b-container class="container">
-    <Header />
+  <div >
+     <Header />
+    <b-container class="container">
     <h1 class="title">Favorite recipes</h1>
     <b-row>
       <!-- <b-col class="col" v-for="r in Math.ceil(recipes.length / 4)" :key="r.id">
@@ -15,6 +16,7 @@
       </b-col>
     </b-row>
   </b-container>
+  </div>
 </template>
 
 <script>
