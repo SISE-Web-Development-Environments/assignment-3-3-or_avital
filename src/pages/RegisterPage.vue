@@ -120,7 +120,7 @@
               $v.form.password.required && !$v.form.password.containsSpecial
             "
           >
-            Have contain at least one special number
+            Have contain at least one special digit
           </b-form-invalid-feedback>
         </b-form-group>
         <!-- confirmed Password -->
