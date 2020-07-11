@@ -5,7 +5,7 @@
     header-border-variant="danger"
     align="center"
     text-variant="black"
-    style="width: 300px;  height:100%"
+    style="width: 400px;  height:100%"
   >
     <router-link
       :to="{
@@ -176,7 +176,9 @@ export default {
 .title {
   font-size: 1vw;
   margin: 0 auto;
+  min-height: 4rem;
   font-weight: bold;
+  
 }
 
 .body {
