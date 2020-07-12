@@ -2,22 +2,124 @@
   <div>
     <Header />
     <b-container class="container">
-      <h1 class="title">About Page</h1>
-      <h2 class="content">
-        Hello, food lovers !
-      </h2>
-      <h5 class="content">
-        Here the website developers, Or and Avital, welcome you to peace and
-        appetite :) <br />
-        Each of us is a known food lover. <br />
-        Or Alfasi - World Confectioner of hummus chocolate chip cookies. <br />
-        Avital Zehavi - chewing hummus cookies in her spare time. <br />
-        This project is done with sweat,tears and great appetite.<br />
-        --------bla bla -------- <br />
-        Link to section 3.1- ...... <br />
-        Link to Section 3.2 - ..... <br />
-        Link to Part 3.3. - The web
-      </h5>
+      <!-- Section: Team v.1 -->
+      <section class="team-section text-center my-5">
+        <!-- Section heading -->
+        <h2 class="h1-responsive font-weight-bold my-5">Our amazing team</h2>
+        <!-- Section description -->
+        <p class="grey-text w-responsive mx-auto mb-5 bg-1">
+          Hello, food lovers ! Here the website developers, Or and Avital,
+          welcome you to peace and appetite :) Each of us is a known food lover.
+          Lets tell you about us.
+        </p>
+
+        <!-- Grid row -->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-lg-6 col-md-6 mb-lg-0 mb-5">
+            <div class="avatar mx-auto">
+              <img
+                src="../images/‏‏avitalImage.jpg"
+                class="rounded-circle z-depth-1"
+                alt="Sample avatar"
+              />
+            </div>
+            <h5 class="font-weight-bold mt-4 mb-6">Avital Zehavi</h5>
+            <p class="text-uppercase blue-text">
+              <strong>Web developer</strong>
+            </p>
+            <p class="grey-text" style="text-align:left;font-size: 1.2em;">
+              Chewing hummus chocolate chips cookies. In her spare time. In her
+              spare time, a student of information systems and feature
+              engineering at Ben Gurion University of the Negev. Champion in
+              nodeJS and vueJS. <br />
+              You can contact me on gmail or facebook.
+              <br />
+            </p>
+            <ul class="list-unstyled mb-0">
+              <link
+                rel="stylesheet"
+                href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                crossorigin="anonymous"
+              />
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/avital.zehavi.9'">
+                <i
+                  class="fab fa-facebook-f fa-lg white-text mr-md-10 mr-3 fa-2x"
+                ></i
+              ></a>
+
+              <!-- gmail -->
+              <a class="p-4 fa-lg ins-ic">
+                <a href="mailto:avitalz57@gmail.com">
+                  <i class="fab fa-google-plus black-text p-4 fa-lg fb-ic"></i
+                ></a>
+              </a>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-lg-6 col-md-6 mb-lg-0 mb-5">
+            <div class="avatar mx-auto">
+              <img
+                src="../images/‏‏avitalImage.jpg"
+                class="rounded-circle z-depth-1"
+                alt="Sample avatar"
+              />
+            </div>
+            <h5 class="font-weight-bold mt-4 mb-6">Or Alfasi</h5>
+            <p class="text-uppercase blue-text">
+              <strong>Web developer</strong>
+            </p>
+            <p class="grey-text" style="text-align:left;font-size: 1.2em;">
+              World Confectioner of hummus chocolate chips cookies. In her spare
+              time, she is a student of information systems and feature
+              engineering at Ben Gurion University of the Negev. Champion in
+              nodeJS and vueJS. <br />You can contact me on gmail or facebook.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/OrAlfasi">
+                <i
+                  class="fab fa-facebook-f fa-lg white-text mr-md-10 mr-3 fa-2x"
+                ></i
+              ></a>
+              <!-- gmail -->
+              <a class="p-4 fa-lg ins-ic">
+                <a href="mailto:orAlfasi09@gmail.com">
+                  <i class="fab fa-google-plus black-text p-4 fa-lg fb-ic"></i
+                ></a>
+              </a>
+            </ul>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <div class="projectStory">
+          This project is done with love and fun. We learned a lot, both about
+          web programming and cooking.<br />
+        </div>
+
+        <div class="projectLinks">
+          <!-- style="text-align:left;margin-bottom:30px;" -->
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a
+                href=" https://app.swaggerhub.com/apis/avitalze/recipeWebUpdate/1.9"
+                >Part 1 - API</a
+              >
+            </li>
+            <li><a href="nnnn">Part 2 - backend</a></li>
+            <li><a href="p-3-3">Part 3- fronted</a></li>
+          </ul>
+        </div>
+
+        <!-- Grid row -->
+      </section>
+      <!-- Section: Team v.1 -->
     </b-container>
   </div>
 </template>
@@ -38,4 +140,35 @@ export default {
 //   padding: 10 px;
 //   align-items: center;
 // }
+.col {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.p {
+  font-size: 16px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.bg-1 {
+  background-color: #1ac6f1; /* Green */
+  color: #ffffff;
+}
+.bg-2 {
+  background-color: #474e5d; /* Dark Blue */
+  color: #ffffff;
+}
+.bg-3 {
+  background-color: #ffffff; /* White */
+  color: #555555;
+}
+.fa-clickable {
+  cursor: pointer;
+  outline: none;
+}
 </style>

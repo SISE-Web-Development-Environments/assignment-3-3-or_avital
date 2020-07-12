@@ -175,6 +175,7 @@ export default {
 .title {
   font-size: 1.2vw;
   margin: 0 auto;
+  min-height: 4rem;
   font-weight: bold;
   height: 3rem;
 }
