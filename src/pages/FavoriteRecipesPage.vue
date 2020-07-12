@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <b-container class="container">
       <h1 class="title">Favorite recipes</h1>
       <b-row>
@@ -20,9 +21,12 @@
 
 <script>
 import RecipePreviewTable from "../components/RecipePreviewTable.vue";
+import Header from "@/components/Header";
+
 export default {
   components: {
     RecipePreviewTable,
+    Header,
   },
   mounted() {
     if (!this.$cookies.get("session")) {

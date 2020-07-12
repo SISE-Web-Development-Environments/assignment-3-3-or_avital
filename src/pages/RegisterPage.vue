@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <div class="container">
       <h1 class="title">Register</h1>
       <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
@@ -220,6 +221,7 @@
 
 <script>
 import countries from "../assets/countries";
+import Header from "@/components/Header";
 
 import {
   required,
@@ -233,7 +235,9 @@ import {
 
 export default {
   name: "Register",
-
+  components: {
+    Header,
+  },
   data() {
     return {
       form: {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <div class="container" :key="pagekey">
       <div v-if="recipe">
         <b-row>
@@ -93,11 +94,13 @@
 <script>
 import Ingredients from "../components/Ingredients";
 import Instructions from "../components/Instructions";
+import Header from "@/components/Header";
 
 export default {
   components: {
     Ingredients: Ingredients,
     Instructions: Instructions,
+    Header,
   },
   data() {
     return {

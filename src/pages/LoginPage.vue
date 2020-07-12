@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <div class="container">
       <Login />
     </div>
@@ -8,9 +9,12 @@
 
 <script>
 import Login from "../components/Login";
+import Header from "@/components/Header";
+
 export default {
   components: {
     Login,
+    Header,
   },
 };
 </script>
