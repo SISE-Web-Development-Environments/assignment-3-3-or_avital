@@ -1,5 +1,6 @@
 <template>
   <div :key="update_key">
+    <Header />
     <b-container class="container">
       <b-row>
         <b-col class="col">
@@ -46,6 +47,8 @@
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
 import Login from "../components/Login";
+import Header from "@/components/Header";
+
 export default {
   data() {
     return {
@@ -55,6 +58,7 @@ export default {
   components: {
     RecipePreviewList,
     Login,
+    Header,
   },
   methods: {
     NewRandomRecipes() {

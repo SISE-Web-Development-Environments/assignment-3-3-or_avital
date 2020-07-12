@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <b-container class="container">
       <h1 class="title">Family recipes</h1>
 
@@ -20,10 +21,12 @@
 <script>
 //familyPrev
 import FamilyPreview from "../components/FamilyPreview";
+import Header from "@/components/Header";
 
 export default {
   components: {
     FamilyPreview,
+    Header,
   },
   data() {
     return {
