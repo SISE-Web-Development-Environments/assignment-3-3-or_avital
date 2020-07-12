@@ -1,7 +1,7 @@
 <template>
   <b-container class="container">
     <b-row>
-      <div v-if="!Array.isArray(recipes) || !recipes.length">
+      <div v-if="this.isEmpty === true">
         you don't have recipes of this kind yet
       </div>
       <div v-else>
@@ -41,6 +41,7 @@ export default {
     return {
       recipes: [],
       defineNumOfItemsInRow: 3,
+      isEmpty: false,
     };
   },
   computed: {
@@ -123,6 +124,13 @@ export default {
           }
         } else if (type && type == "search" && this.recipeType == type) {
           this.recipes = this.$parent.search_results;
+        }
+        if(!Array.isArray(this.recipes) || !this.recipes.length){ 
+          // recipes is empty 
+          this.isEmpty= true;
+        }
+        else{
+          this.isEmpty=false;
         }
       } catch (error) {
         console.log(error);

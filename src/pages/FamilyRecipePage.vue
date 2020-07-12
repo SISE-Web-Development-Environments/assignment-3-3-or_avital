@@ -3,7 +3,7 @@
     <b-container class="container">
       <h1 class="title">Family recipes</h1>
 
-      <div v-if="!Array.isArray(family_recipes) || !family_recipes.length">
+      <div v-if="isEmpty === true">
         you don't have family recipes yet
       </div>
       <div v-else>
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       family_recipes: [],
+      isEmpty: false,
     };
   },
 
@@ -53,6 +54,12 @@ export default {
           currRecipe.id = recipe_id;
           this.family_recipes.push(currRecipe);
         }
+      }
+      if (!Array.isArray(this.family_recipes) || !this.family_recipes.length) {
+        // recipes is empty
+        this.isEmpty = true;
+      } else {
+        this.isEmpty = false;
       }
     } catch (error) {
       console.log(error);
