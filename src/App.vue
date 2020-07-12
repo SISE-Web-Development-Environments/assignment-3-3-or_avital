@@ -1,26 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
-      <router-link :to="{ name: 'search' }">Search</router-link>|
-      <router-link :to="{ name: 'about' }">About</router-link>|
-      {{ !$cookies.get("session") }}
-      <span v-if="!$cookies.get('session')">
-        Guest:
-        <router-link :to="{ name: 'register' }">Register</router-link>|
-        <router-link :to="{ name: 'login' }">Login</router-link>|
-      </span>
-      <span v-else>
-        {{ $cookies.get("session") }}: <button @click="Logout">Logout</button>|
-      </span>
-    </div>
+    <Header />
     <router-view />
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header";
 export default {
   name: "App",
+  components: {
+    Header: Header,
+  },
   methods: {
     Logout() {
       this.$root.store.logout();
@@ -46,6 +37,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 100vh;
+  background-image: url("images/background4.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #nav {

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <b-container class="container">
       <!-- Section: Team v.1 -->
       <section class="team-section text-center my-5">
@@ -124,11 +123,8 @@
   </div>
 </template>
 <script>
-import Header from "../components/Header";
 export default {
-  components: {
-    Header,
-  },
+  components: {},
 };
 </script>
 

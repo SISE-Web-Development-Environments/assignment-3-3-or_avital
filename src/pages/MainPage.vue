@@ -1,8 +1,6 @@
 <template>
   <div :key="update_key">
-    <Header />
     <b-container class="container">
-      <h1 class="title">Main Page</h1>
       <b-row>
         <b-col class="col">
           <RecipePreviewList
@@ -11,9 +9,7 @@
             class="RandomRecipes center"
           />
           <br />
-          <router-link v-if="!$cookies.get('session')" to="/login" tag="button"
-            >You need to Login to vue this</router-link
-          >
+
           <b-button variant="info" @click="NewRandomRecipes"
             >Watch 3 New Recipes!</b-button
           >
@@ -49,7 +45,6 @@
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
-import Header from "../components/Header";
 import Login from "../components/Login";
 export default {
   data() {
@@ -59,7 +54,6 @@ export default {
   },
   components: {
     RecipePreviewList,
-    Header,
     Login,
   },
   methods: {
@@ -84,9 +78,5 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
-}
-
-.col {
-  border-style: dotted;
 }
 </style>

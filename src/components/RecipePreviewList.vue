@@ -110,5 +110,7 @@ export default {
 .row {
   padding-top: 10px;
   align-items: center;
+  height: 50%;
+  width: 80%;
 }
 </style>

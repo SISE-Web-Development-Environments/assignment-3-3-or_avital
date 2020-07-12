@@ -1,19 +1,18 @@
 <template>
   <div>
-    <Header />
     <b-container class="container">
       <h1 class="title">Family recipes</h1>
-     
-        <div v-if="!Array.isArray(family_recipes) || !family_recipes.length"> you don't have family recipes yet</div>
-        <div v-else>
-           <b-row>
-           <b-col class="row" v-for="r in family_recipes" :key="r.id">
-          <FamilyPreview class="recipePreview" :recipe="r" />
+
+      <div v-if="!Array.isArray(family_recipes) || !family_recipes.length">
+        you don't have family recipes yet
+      </div>
+      <div v-else>
+        <b-row>
+          <b-col class="row" v-for="r in family_recipes" :key="r.id">
+            <FamilyPreview class="recipePreview" :recipe="r" />
           </b-col>
-          </b-row>
-        </div>
-       
-    
+        </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -21,11 +20,10 @@
 <script>
 //familyPrev
 import FamilyPreview from "../components/FamilyPreview";
-import Header from "../components/Header";
+
 export default {
   components: {
     FamilyPreview,
-    Header,
   },
   data() {
     return {

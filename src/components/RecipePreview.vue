@@ -1,85 +1,81 @@
 <template>
-  <b-card
-    class="card mb-2"
-    bg-variant="light"
-    header-border-variant="danger"
-    align="center"
-    text-variant="black"
-  >
-    <router-link
-      :to="{
-        name: 'fullRecipePage',
-        params: { recipeId: recipe.id, likeCount: recipe.aggregateLikes },
-      }"
-      class="recipe-preview"
+  <div class="recipeprev">
+    <b-card
+      class="card mb-2"
+      header-border-variant="danger"
+      align="center"
+      text-variant="black"
+      no-gutters
     >
-      <b-card-img
-        :src="recipe.image"
-        img-top
-        img-width="150"
-        img-height="240"
-        class="image"
-      />
-    </router-link>
-    <b-card-body class="body" no-gutters>
-      <b-card-title :title="recipe.title" class="title">
-        <p>{{ recipe.title }}</p>
-      </b-card-title>
-      <b-row class="row" no-gutters>
-        <b-col
-          ><img
-            :src="require('@/images/clock_icon.png')"
-            height="20px"
-            width="20px"
-          />
-          {{ recipe.readyInMinutes }} minutes
-        </b-col>
-        <b-col v-if="recipe.aggregateLikes">
-          <img
-            :src="require('@/images/heart.png')"
-            height="20px"
-            width="20px"
-          />
-          {{ recipe.aggregateLikes }} likes</b-col
-        >
-      </b-row>
-      <b-row class="row" no-gutters>
-        <b-col :class="{ notSomething: !recipe.vegetarian }">
-          <img
-            :src="require('@/images/vegetarian_icon.png')"
-            height="40px"
-            width="40px"
-          />
-        </b-col>
-        <b-col :class="{ notSomething: !recipe.vegan }">
-          <img
-            :src="require('@/images/vegan_icon.png')"
-            height="40px"
-            width="40px"
-          />
-        </b-col>
-        <b-col :class="{ notSomething: !recipe.glutenFree }">
-          <img
-            :src="require('@/images/gluten_free_icon.png')"
-            height="40px"
-            width="40px"
-        /></b-col>
-      </b-row>
-      <b-row
-        v-if="$cookies.get('session') && recipe.aggregateLikes >= 0"
-        class="row justify-content-center"
+      <router-link
+        :to="{
+          name: 'fullRecipePage',
+          params: { recipeId: recipe.id, likeCount: recipe.aggregateLikes },
+        }"
+        class="recipe-preview"
       >
-        <b-button
-          :disabled="recipe.favorite"
-          @click="addRecipeToFavortie"
-          class="favorite_btn"
+        <b-card-img alt="Image" :src="recipe.image" img-top />
+      </router-link>
+      <b-card-body class="body" no-gutters>
+        <b-card-title :title="recipe.title" class="title">
+          <p>{{ recipe.title }}</p>
+        </b-card-title>
+        <b-row class="row" no-gutters>
+          <b-col
+            ><img
+              :src="require('@/images/clock_icon.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.readyInMinutes }} minutes
+          </b-col>
+          <b-col v-if="recipe.aggregateLikes">
+            <img
+              :src="require('@/images/heart.png')"
+              height="20px"
+              width="20px"
+            />
+            {{ recipe.aggregateLikes }} likes</b-col
+          >
+        </b-row>
+        <b-row class="row" no-gutters>
+          <b-col :class="{ notSomething: !recipe.vegetarian }">
+            <img
+              :src="require('@/images/vegetarian_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.vegan }">
+            <img
+              :src="require('@/images/vegan_icon.png')"
+              height="40px"
+              width="40px"
+            />
+          </b-col>
+          <b-col :class="{ notSomething: !recipe.glutenFree }">
+            <img
+              :src="require('@/images/gluten_free_icon.png')"
+              height="40px"
+              width="40px"
+          /></b-col>
+        </b-row>
+        <b-row
+          v-if="$cookies.get('session') && recipe.aggregateLikes >= 0"
+          class="row justify-content-center"
         >
-          <a v-if="!recipe.favorite">add to favorites</a>
-          <a v-else>already in favorites</a>
-        </b-button>
-      </b-row>
-    </b-card-body>
-  </b-card>
+          <b-button
+            :disabled="recipe.favorite"
+            @click="addRecipeToFavortie"
+            class="favorite_btn"
+          >
+            <a v-if="!recipe.favorite">add to favorites</a>
+            <a v-else>already in favorites</a>
+          </b-button>
+        </b-row>
+      </b-card-body>
+    </b-card>
+  </div>
 </template>
 
 <script>
@@ -124,14 +120,22 @@ export default {
 </script>
 
 <style scoped>
+.recipeprev {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+}
 .recipe-preview {
   display: inline-block;
-  width: 70%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   position: relative;
-  margin: 10px 10px;
   color: #000000;
   text-decoration: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 .recipe-preview:hover {
@@ -192,10 +196,5 @@ export default {
 .favorite_btn {
   font-size: 14px;
   padding: 5px 10px;
-}
-
-.img {
-  width: 150px;
-  height: 240px;
 }
 </style>

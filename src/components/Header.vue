@@ -1,7 +1,12 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">We need a cool name</b-navbar-brand>
+    <b-navbar toggleable="lg">
+      <img
+        :src="require('@/images/logo-cookie.png')"
+        height="80px"
+        width="200px"
+        class="img"
+      />
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -28,9 +33,15 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item :to="{ name: 'favoriteRecipes' }">Favorite Recipes</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'personalRecipes' }">Personal Recipes</b-dropdown-item>
-              <b-dropdown-item :to="{ name: 'familyRecipes' }">Family Recipes</b-dropdown-item>
+              <b-dropdown-item :to="{ name: 'favoriteRecipes' }"
+                >Favorite Recipes</b-dropdown-item
+              >
+              <b-dropdown-item :to="{ name: 'personalRecipes' }"
+                >Personal Recipes</b-dropdown-item
+              >
+              <b-dropdown-item :to="{ name: 'familyRecipes' }"
+                >Family Recipes</b-dropdown-item
+              >
             </b-nav-item-dropdown>
             <b-nav-item @click="LogoutFunc">LogOut</b-nav-item>
           </b-navbar-nav>
@@ -54,4 +65,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.img {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar {
+  background: #17afdd;
+}
+</style>

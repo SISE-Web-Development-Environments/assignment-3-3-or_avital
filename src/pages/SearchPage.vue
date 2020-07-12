@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <div class="container" :key="searchkey">
       <h1>Search Page</h1>
       <b-row>
@@ -89,12 +88,10 @@
 
 <script>
 import RecipePreviewTable from "../components/RecipePreviewTable.vue";
-import Header from "../components/Header";
 
 export default {
   components: {
     RecipePreviewTable,
-    Header,
   },
   data() {
     return {
