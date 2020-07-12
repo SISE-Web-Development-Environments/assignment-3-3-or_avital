@@ -7,7 +7,7 @@
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold my-5">Our amazing team</h2>
         <!-- Section description -->
-        <p class="grey-text w-responsive mx-auto mb-5">
+        <p class="grey-text w-responsive mx-auto mb-5 bg-1">
           Hello, food lovers ! Here the website developers, Or and Avital,
           welcome you to peace and appetite :) Each of us is a known food lover.
           Lets tell you about us.
@@ -28,24 +28,33 @@
             <p class="text-uppercase blue-text">
               <strong>Web developer</strong>
             </p>
-            <p class="grey-text" style="text-align:left">
-              Chewing hummus cookies in her spare time. In his spare time, a
-              student of information systems and feature engineering at Ben
-              Gurion University of the Negev. Champion in nodeJS and vueJS
-              Contact email
+            <p class="grey-text" style="text-align:left;font-size: 1.2em;">
+              Chewing hummus chocolate chips cookies. In her spare time. In her
+              spare time, a student of information systems and feature
+              engineering at Ben Gurion University of the Negev. Champion in
+              nodeJS and vueJS. <br />
+              You can contact me on gmail or facebook.
+              <br />
             </p>
             <ul class="list-unstyled mb-0">
+              <link
+                rel="stylesheet"
+                href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                crossorigin="anonymous"
+              />
               <!-- Facebook -->
-              <a class="p-2 fa-lg fb-ic">
-                <i class="fab fa-facebook-f blue-text"> </i>
-              </a>
-              <!-- Twitter -->
-              <a class="p-2 fa-lg tw-ic">
-                <i class="fab fa-twitter blue-text"> </i>
-              </a>
-              <!-- Instagram -->
-              <a class="p-2 fa-lg ins-ic">
-                <i class="fab fa-instagram blue-text"> </i>
+              <a href="https://www.facebook.com/avital.zehavi.9'">
+                <i
+                  class="fab fa-facebook-f fa-lg white-text mr-md-10 mr-3 fa-2x"
+                ></i
+              ></a>
+
+              <!-- gmail -->
+              <a class="p-4 fa-lg ins-ic">
+                <a href="mailto:avitalz57@gmail.com">
+                  <i class="fab fa-google-plus black-text p-4 fa-lg fb-ic"></i
+                ></a>
               </a>
             </ul>
           </div>
@@ -64,20 +73,24 @@
             <p class="text-uppercase blue-text">
               <strong>Web developer</strong>
             </p>
-            <p class="grey-text" style="text-align:left">
+            <p class="grey-text" style="text-align:left;font-size: 1.2em;">
               World Confectioner of hummus chocolate chips cookies. In her spare
               time, she is a student of information systems and feature
               engineering at Ben Gurion University of the Negev. Champion in
-              nodeJS and vueJS Contact email
+              nodeJS and vueJS. <br />You can contact me on gmail or facebook.
             </p>
             <ul class="list-unstyled mb-0">
               <!-- Facebook -->
-              <a class="p-2 fa-lg fb-ic">
-                <i class="fab fa-facebook-f blue-text"> </i>
-              </a>
-              <!-- Instagram -->
-              <a class="p-2 fa-lg ins-ic">
-                <i class="fab fa-instagram blue-text"> </i>
+              <a href="https://www.facebook.com/OrAlfasi">
+                <i
+                  class="fab fa-facebook-f fa-lg white-text mr-md-10 mr-3 fa-2x"
+                ></i
+              ></a>
+              <!-- gmail -->
+              <a class="p-4 fa-lg ins-ic">
+                <a href="mailto:orAlfasi09@gmail.com">
+                  <i class="fab fa-google-plus black-text p-4 fa-lg fb-ic"></i
+                ></a>
               </a>
             </ul>
           </div>
@@ -86,14 +99,22 @@
         <!-- Grid row -->
 
         <div class="projectStory">
-          This project is done with sweat,tears and great appetite.<br />
-          --------bla bla -------- <br />
+          This project is done with love and fun. We learned a lot, both about
+          web programming and cooking.<br />
         </div>
 
-        <div class="row" style="text-align:left">
-          Link to section 3.1- ...... <br />
-          Link to Section 3.2 - ..... <br />
-          Link to Part 3.3. - The web
+        <div class="projectLinks">
+          <!-- style="text-align:left;margin-bottom:30px;" -->
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a
+                href=" https://app.swaggerhub.com/apis/avitalze/recipeWebUpdate/1.9"
+                >Part 1 - API</a
+              >
+            </li>
+            <li><a href="nnnn">Part 2 - backend</a></li>
+            <li><a href="p-3-3">Part 3- fronted</a></li>
+          </ul>
         </div>
 
         <!-- Grid row -->
@@ -135,7 +156,19 @@ export default {
 }
 
 .bg-1 {
-  background-color: #1abc9c; /* Green */
+  background-color: #1ac6f1; /* Green */
   color: #ffffff;
+}
+.bg-2 {
+  background-color: #474e5d; /* Dark Blue */
+  color: #ffffff;
+}
+.bg-3 {
+  background-color: #ffffff; /* White */
+  color: #555555;
+}
+.fa-clickable {
+  cursor: pointer;
+  outline: none;
 }
 </style>
