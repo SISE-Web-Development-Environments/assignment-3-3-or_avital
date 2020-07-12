@@ -5,7 +5,7 @@
       <b-row>
         <b-col class="col">
           <RecipePreviewList
-            title="Browse for new Recipes to Cook"
+            title="Browse new recipes"
             recipeType="random"
             class="RandomRecipes center"
           />
@@ -22,7 +22,7 @@
           </div>
           <div v-else>
             <RecipePreviewList
-              title="Last Viewed Recipes"
+              title="Last viewed recipes"
               recipeType="last"
               :class="{
                 RandomRecipes: true,

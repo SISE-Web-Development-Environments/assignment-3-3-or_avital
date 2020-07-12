@@ -10,7 +10,7 @@
           recipeType == 'last' && (!Array.isArray(recipes) || !recipes.length)
         "
       >
-        you don't have watched recipes yet
+        you haven't watched recipes yet
       </div>
       <div v-else>
         <b-row class="row" v-for="r in recipes" :key="r.id">
