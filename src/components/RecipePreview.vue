@@ -5,7 +5,6 @@
     header-border-variant="danger"
     align="center"
     text-variant="black"
-    style="width: 300px;  height:100%"
   >
     <router-link
       :to="{
@@ -165,8 +164,8 @@ export default {
 }
 
 .card {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   display: block;
   color: #000000;
   text-decoration: none;
@@ -174,9 +173,10 @@ export default {
 }
 
 .title {
-  font-size: 1vw;
+  font-size: 1.2vw;
   margin: 0 auto;
   font-weight: bold;
+  height: 3rem;
 }
 
 .body {
@@ -191,5 +191,10 @@ export default {
 .favorite_btn {
   font-size: 14px;
   padding: 5px 10px;
+}
+
+.img {
+  width: 150px;
+  height: 240px;
 }
 </style>

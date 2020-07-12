@@ -5,13 +5,18 @@
         {{ title }}
         <slot></slot>
       </h3>
-      <div v-if="recipeType=='last' && (!Array.isArray(recipes) || !recipes.length)"> you don't have watched recipes yet</div>
-      <div v-else>
-          <b-row class="row" v-for="r in recipes" :key="r.id">
-          <RecipePreview class="recipePreview" :recipe="r" />
-          </b-row>
+      <div
+        v-if="
+          recipeType == 'last' && (!Array.isArray(recipes) || !recipes.length)
+        "
+      >
+        you don't have watched recipes yet
       </div>
-     
+      <div v-else>
+        <b-row class="row" v-for="r in recipes" :key="r.id">
+          <RecipePreview class="recipePreview" :recipe="r" />
+        </b-row>
+      </div>
     </b-col>
   </b-container>
 </template>
@@ -60,12 +65,12 @@ export default {
             { withCredentials: true }
             //
           );
-          
+
           recipe_dict = response_last3.data;
-          console.log(recipe_dict); // dell !! 
+          console.log(recipe_dict); // dell !!
         }
         var recipe_dict_personal;
-        if (this.$cookies.get("session") ) {
+        if (this.$cookies.get("session")) {
           var recipe_ids = Object.keys(recipe_dict);
           const response_personal = await this.axios.get(
             "http://localhost:3000/profile/recipeInfo/[" +
@@ -103,7 +108,7 @@ export default {
   min-height: 400px;
 }
 .row {
-  padding: 10 px;
+  padding-top: 10px;
   align-items: center;
 }
 </style>

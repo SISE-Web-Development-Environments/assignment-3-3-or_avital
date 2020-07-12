@@ -143,11 +143,11 @@ export default {
   min-height: 400px;
 }
 .row {
-  padding: 10 px;
   align-items: center;
 }
 .col {
   // border-style: dotted;
   align-items: center;
+  padding-top: 20px;
 }
 </style>

@@ -8,23 +8,25 @@
             <img :src="recipe.image" class="center" />
           </b-col>
           <b-col>
-            <b-row align-v="center">
-              <h1>{{ recipe.title }}</h1>
-              <img
-                v-if="$cookies.get('session') && recipe.watched"
-                :src="require('@/images/eye.png')"
-                height="40px"
-                width="40px"
-              />
+            <b-row align-v="center" class="row">
+              <h1>
+                {{ recipe.title }}
+                <img
+                  v-if="$cookies.get('session') && recipe.watched"
+                  :src="require('@/images/eye.png')"
+                  height="40px"
+                  width="40px"
+                />
+              </h1>
             </b-row>
-            <b-row>
+            <b-row class="row">
               <img
                 :src="require('@/images/clock_icon.png')"
                 height="20px"
                 width="20px"
               />Total time: {{ recipe.readyInMinutes }} minutes
             </b-row>
-            <b-row v-if="recipe.aggregateLikes">
+            <b-row v-if="recipe.aggregateLikes" class="row">
               <img
                 :src="require('@/images/heart.png')"
                 height="20px"
@@ -32,35 +34,39 @@
               />
               {{ recipe.aggregateLikes }} likes
             </b-row>
-            <b-row>
-              <b-col :class="{ notSomething: !recipe.vegetarian }">
+            <b-row class="row">
+              <b-col :class="{ notSomething: !recipe.vegetarian }" cols="2">
                 <img
                   :src="require('@/images/vegetarian_icon.png')"
                   height="40px"
                   width="40px"
                 />
               </b-col>
-              <b-col :class="{ notSomething: !recipe.vegan }">
+              <b-col :class="{ notSomething: !recipe.vegan }" cols="2">
                 <img
                   :src="require('@/images/vegan_icon.png')"
                   height="40px"
                   width="40px"
                 />
               </b-col>
-              <b-col :class="{ notSomething: !recipe.glutenFree }">
+              <b-col :class="{ notSomething: !recipe.glutenFree }" cols="2">
                 <img
                   :src="require('@/images/gluten_free_icon.png')"
                   height="40px"
                   width="40px"
               /></b-col>
             </b-row>
-            <b-row v-if="$cookies.get('session') && recipe.aggregateLikes >= 0">
+            <b-row
+              v-if="$cookies.get('session') && recipe.aggregateLikes >= 0"
+              id="favorite"
+            >
               <b-button
                 :disabled="recipe.favorite"
                 @click="addRecipeToFavortie"
+                class="favorite_btn"
               >
-                <p v-if="!recipe.favorite">add to favorites</p>
-                <p v-else>already in favorites</p>
+                <a v-if="!recipe.favorite">add to favorites</a>
+                <a v-else>already in favorites</a>
               </b-button>
             </b-row>
           </b-col>
@@ -147,16 +153,7 @@ export default {
         var recipe_dict_personal;
         if (this.$cookies.get("session")) {
           // user connected
-          if (this.$route.params.likeCount >= 0) {
-            const addToWatched = await this.axios.post(
-              "http://localhost:3000/profile/addRecipeToWatched",
-              //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
-              {
-                recipeID: this.$route.params.recipeId,
-                withCredentials: true,
-              }
-            );
-          }
+
           const response_personal = await this.axios.get(
             "http://localhost:3000/profile/recipeInfo/[" +
               // "https://assignment-3-2-avital.herokuapp.com/profile/recipeInfo/[" +
@@ -173,6 +170,18 @@ export default {
         if (recipe_dict_personal) {
           this.recipe.watched = recipe_dict_personal[this.recipe.id].watched;
           this.recipe.favorite = recipe_dict_personal[this.recipe.id].favorite;
+        }
+
+        //add to watched
+        if (this.$route.params.likeCount >= 0) {
+          const addToWatched = await this.axios.post(
+            "http://localhost:3000/profile/addRecipeToWatched",
+            //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
+            {
+              recipeID: this.$route.params.recipeId,
+              withCredentials: true,
+            }
+          );
         }
       }
     } catch (error) {
@@ -204,6 +213,7 @@ export default {
 <style scoped>
 .wrapper {
   display: flex;
+  padding-top: 20px;
 }
 .wrapped {
   width: 50%;
@@ -221,5 +231,22 @@ export default {
 
 .container {
   padding-top: 10px;
+}
+
+.row {
+  padding: 3px;
+}
+
+img {
+  margin-right: 5px;
+}
+
+.favorite_btn {
+  font-size: 16px;
+  padding: 5px 5px;
+}
+
+#favorite {
+  padding-top: 100px;
 }
 </style>
