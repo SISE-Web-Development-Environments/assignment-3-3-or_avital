@@ -125,12 +125,11 @@ export default {
         } else if (type && type == "search" && this.recipeType == type) {
           this.recipes = this.$parent.search_results;
         }
-        if(!Array.isArray(this.recipes) || !this.recipes.length){ 
-          // recipes is empty 
-          this.isEmpty= true;
-        }
-        else{
-          this.isEmpty=false;
+        if (!Array.isArray(this.recipes) || !this.recipes.length) {
+          // recipes is empty
+          this.isEmpty = true;
+        } else {
+          this.isEmpty = false;
         }
       } catch (error) {
         console.log(error);

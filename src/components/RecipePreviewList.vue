@@ -1,10 +1,10 @@
 <template>
   <b-container class="container">
     <b-col>
-      <h3>
+      <h1>
         {{ title }}
         <slot></slot>
-      </h3>
+      </h1>
       <div v-if="recipeType == 'last' && this.isEmpty === true">
         you haven't watched recipes yet
       </div>

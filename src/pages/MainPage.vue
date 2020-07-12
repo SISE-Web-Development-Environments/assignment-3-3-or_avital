@@ -11,7 +11,7 @@
           />
           <br />
 
-          <b-button variant="info" @click="NewRandomRecipes"
+          <b-button variant="info" @click="NewRandomRecipes" id="button"
             >Watch 3 New Recipes!</b-button
           >
         </b-col>
@@ -33,12 +33,6 @@
             ></RecipePreviewList>
           </div>
         </b-col>
-
-        <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
       </b-row>
     </b-container>
   </div>
@@ -82,5 +76,17 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+
+#button {
+  background: rgb(201, 154, 110);
+  border: 2px solid rgb(199, 139, 82);
+  margin-left: 120px;
+  margin-bottom: 30px;
+}
+
+#button:hover {
+  background: rgb(187, 123, 63);
+  border: 2px solid rgb(199, 139, 82);
 }
 </style>

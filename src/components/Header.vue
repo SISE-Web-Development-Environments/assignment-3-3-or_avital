@@ -75,8 +75,9 @@ export default {
 
 .navbar {
   font-size: 18px;
-  background: rgb(201, 154, 110);
-  opacity: 0.6;
+  background: rgb(236, 184, 134) !important;
+  position: relative; /* <-- Added */
+  z-index: 1; /* <-- Added */
 }
 
 .nav-item.nav-item.nav-item a {
@@ -88,7 +89,7 @@ export default {
 }
 
 .navbar-nav > li > .dropdown-menu {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 .navbar-brand {
