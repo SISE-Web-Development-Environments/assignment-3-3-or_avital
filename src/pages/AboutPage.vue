@@ -6,8 +6,8 @@
       <section class="team-section text-center my-5">
         <!-- Section heading -->
         <h2 class="h1-responsive font-weight-bold my-3">Our amazing team</h2>
-        <!-- Section description -->
-        <p class="grey-text w-responsive mx-auto mb-6" style="font-size: 1.2em;">
+        <!-- Section description --> 
+        <p class="grey-text w-responsive mx-auto mb-5" style="font-size: 1.2em;">
           Hello, food lovers! &#9995; Here are the website developers, Or and Avital &#x1F60A;  &#127802; <br>
           Welcome you to peace and appetite   <br>
           &#127821; &#127835; &#127789; &#127836; &#127828; Each of us is a known food lover &#127829; &#127859; &#127839; &#127874; &#127817; <br>
@@ -116,7 +116,19 @@
             <li><a href="https://github.com/SISE-Web-Development-Environments/assignment-3-3-or_avital">Part 3- fronted</a></li>
           </ul>
         </div>
+       
       </section>
+      <div class="end">
+        <h5 class="font-weight-bold mt-4 mb-6 text-center"> we in real life &#129325; </h5>
+          <div class="avatar mx-auto text-center">
+              <img
+                src="../images/together3.png"
+                class="rounded-circle z-depth-0"
+                alt="Sample avatar"
+              />
+            </div>
+        </div> 
+       
     </b-container>
   </div>
 </template>
