@@ -5,11 +5,7 @@
         {{ title }}
         <slot></slot>
       </h3>
-      <div
-        v-if="
-          recipeType == 'last' && (!Array.isArray(recipes) || !recipes.length)
-        "
-      >
+      <div v-if="recipeType == 'last' && this.isEmpty === true">
         you haven't watched recipes yet
       </div>
       <div v-else>
@@ -41,6 +37,7 @@ export default {
   data() {
     return {
       recipes: [],
+      isEmpty: false,
     };
   },
   mounted() {
@@ -68,6 +65,7 @@ export default {
 
           recipe_dict = response_last3.data;
           console.log(recipe_dict); // dell !!
+          console.log("1 is empty: " + this.isEmpty); // dell !!
         }
         var recipe_dict_personal;
         if (this.$cookies.get("session")) {
@@ -92,6 +90,17 @@ export default {
           }
           this.recipes.push(currRecipe);
         }
+        console.log("2 is empty: " + this.isEmpty); // dell !!
+        if (
+          type == "last" &&
+          (!Array.isArray(this.recipes) || !this.recipes.length)
+        ) {
+          // empty arr
+          this.isEmpty = true;
+        } else {
+          this.isEmpty = false;
+        }
+        console.log("3 is empty: " + this.isEmpty); // dell !!
       } catch (error) {
         console.log(error.response);
       }
