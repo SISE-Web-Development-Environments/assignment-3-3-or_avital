@@ -1,12 +1,12 @@
 <template>
   <b-container class="container">
     <b-col>
-      <h3>
+      <h1>
         {{ title }}
         <slot></slot>
-      </h3>
+      </h1>
       <div v-if="recipeType == 'last' && this.isEmpty === true">
-        you don't have watched recipes yet
+        you haven't watched recipes yet
       </div>
       <div v-else>
         <b-row class="row" v-for="r in recipes" :key="r.id">
@@ -91,7 +91,10 @@ export default {
           this.recipes.push(currRecipe);
         }
         console.log("2 is empty: " + this.isEmpty); // dell !!
-        if (type == "last" && (!Array.isArray(this.recipes) || !this.recipes.length)) {
+        if (
+          type == "last" &&
+          (!Array.isArray(this.recipes) || !this.recipes.length)
+        ) {
           // empty arr
           this.isEmpty = true;
         } else {

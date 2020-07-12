@@ -28,12 +28,14 @@
           <b-navbar-nav v-else>
             <b-navbar-brand>Hello {{ $root.store.username }}</b-navbar-brand>
 
-            <b-nav-item-dropdown right>
+            <b-nav-item-dropdown right id="drop">
               <!-- Using 'button-content' slot -->
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item :to="{ name: 'favoriteRecipes' }"
+              <b-dropdown-item
+                class="dropitem"
+                :to="{ name: 'favoriteRecipes' }"
                 >Favorite Recipes</b-dropdown-item
               >
               <b-dropdown-item :to="{ name: 'personalRecipes' }"
@@ -72,6 +74,26 @@ export default {
 }
 
 .navbar {
-  background: #17afdd;
+  font-size: 18px;
+  background: rgb(236, 184, 134) !important;
+  position: relative; /* <-- Added */
+  z-index: 1; /* <-- Added */
+}
+
+.nav-item.nav-item.nav-item a {
+  color: #000000;
+}
+
+.nav-item.nav-item.nav-item a:hover {
+  color: #ee4444;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #ffffff !important;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 22px;
 }
 </style>

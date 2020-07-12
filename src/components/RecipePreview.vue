@@ -121,12 +121,10 @@ export default {
 
 <style scoped>
 .recipeprev {
-  width: 100%;
+  width: 300px;
   height: 100%;
 }
 
-.card {
-}
 .recipe-preview {
   display: inline-block;
   width: 100%;

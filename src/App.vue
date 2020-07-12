@@ -28,10 +28,11 @@ export default {
 @import "@/scss/form-style.scss";
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Comic Sans MS, Comic Sans, cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #000000;
   min-height: 100vh;
   background-image: url("images/background4.jpeg");
   background-repeat: no-repeat;

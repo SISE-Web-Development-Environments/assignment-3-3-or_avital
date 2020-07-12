@@ -2,16 +2,12 @@
   <div>
     <Header />
     <div class="container" :key="searchkey">
-      <h1>Search Page</h1>
-      <b-row>
+      <b-row id="firstrow">
         <b-col cols="4">
           <b-form-input
             :placeholder="search_placeholder"
             v-model="search_string"
           ></b-form-input>
-          <div class="mt-3">
-            <strong>{{ search_string }}</strong>
-          </div>
         </b-col>
         <b-col cols="1">
           <b-form-select v-model="num_of_recipes">
@@ -19,30 +15,18 @@
             <b-form-select-option :value="10">10</b-form-select-option>
             <b-form-select-option :value="15">15</b-form-select-option>
           </b-form-select>
-          <div class="mt-3">
-            Selected: <strong>{{ num_of_recipes }}</strong>
-          </div>
         </b-col>
-        <b-col>
+        <b-col cols="2">
           <b-form-select v-model="cuisine_selected" :options="cuisines">
           </b-form-select>
-          <div class="mt-3">
-            Selected: <strong>{{ cuisine_selected }}</strong>
-          </div>
         </b-col>
-        <b-col>
+        <b-col cols="2">
           <b-form-select v-model="diet_selected" :options="diets">
           </b-form-select>
-          <div class="mt-3">
-            Selected: <strong>{{ diet_selected }}</strong>
-          </div></b-col
-        >
-        <b-col>
+        </b-col>
+        <b-col cols="2">
           <b-form-select v-model="intolerance_selected" :options="intolerances">
           </b-form-select>
-          <div class="mt-3">
-            Selected: <strong>{{ intolerance_selected }}</strong>
-          </div>
         </b-col>
         <b-col>
           <b-button @click="SendSearch" :disabled="!search_string.length">
@@ -82,6 +66,9 @@
           recipeType="search"
           class="FavoriteRecipes center"
         />
+      </b-row>
+      <b-row v-if="searchEmpty" class="empty">
+        No results returned
       </b-row>
     </div>
   </div>
@@ -161,6 +148,7 @@ export default {
       search_string: "",
       sortby_selected: null,
       searchkey: 0,
+      searchEmpty: false,
     };
   },
   mounted() {
@@ -173,6 +161,7 @@ export default {
         this.diet_selected = searchObj.diet_selected;
         this.intolerance_selected = searchObj.intolerance_selected;
         this.search_results = searchObj.search_results;
+        this.searchEmpty = searchObj.isEmpty;
       }
     }
   },
@@ -218,7 +207,9 @@ export default {
           }
           this.search_results.push(currRecipe);
         }
-
+        if (this.search_results.length == 0) {
+          this.searchEmpty = true;
+        }
         //this.$router.push({ name: "search" }).catch((e) => {});
         this.searchkey = this.searchkey + 1;
         if (this.$cookies.get("session")) {
@@ -229,6 +220,7 @@ export default {
           searchObj.diet_selected = this.diet_selected;
           searchObj.intolerance_selected = this.intolerance_selected;
           searchObj.search_results = this.search_results;
+          searchObj.isEmpty = this.searchEmpty;
           localStorage.search = JSON.stringify(searchObj);
           //JSON.stringify(testObject)
           // this.search_defualt = localStorage.search;
@@ -312,5 +304,14 @@ export default {
 
 .results {
   padding: 10px;
+}
+
+#firstrow {
+  padding-top: 50px;
+  padding-bottom: 10px;
+}
+.empty {
+  font-size: 22px;
+  padding: 30px;
 }
 </style>

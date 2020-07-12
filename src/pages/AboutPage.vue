@@ -30,11 +30,10 @@
               <strong>Web developer</strong>
             </p>
             <p class="grey-text" style="text-align:left;font-size: 1.2em;">
-              Chewing hummus chocolate chips cookies. In her spare time. In her
-              spare time, a student of information systems and feature
-              engineering at Ben Gurion University of the Negev. Champion in
-              nodeJS and vueJS. <br />
-              You can contact me on gmail or facebook.
+              Loves chewing on hummus chocolate chips cookies. In her spare
+              time, a student of information systems engineering at Ben Gurion
+              University of the Negev. Specializes in NodeJS and VueJS. <br />
+              You can contact me via gmail or facebook.
               <br />
             </p>
             <ul class="list-unstyled mb-0">
@@ -75,10 +74,10 @@
               <strong>Web developer</strong>
             </p>
             <p class="grey-text" style="text-align:left;font-size: 1.2em;">
-              World Confectioner of hummus chocolate chips cookies. In her spare
-              time, she is a student of information systems and feature
-              engineering at Ben Gurion University of the Negev. Champion in
-              nodeJS and vueJS. <br />You can contact me on gmail or facebook.
+              The worlds best hummus chocolate chips cookies baker. In her spare
+              time, she is a student of information systems engineering at Ben
+              Gurion University of the Negev. Specializes in NodeJS and VueJS.
+              <br />You can contact me via gmail or facebook.
             </p>
             <ul class="list-unstyled mb-0">
               <!-- Facebook -->
@@ -89,7 +88,7 @@
               ></a>
               <!-- gmail -->
               <a class="p-4 fa-lg ins-ic">
-                <a href="mailto:orAlfasi09@gmail.com">
+                <a href="mailto:oralfasi09@gmail.com">
                   <i class="fab fa-google-plus black-text p-4 fa-lg fb-ic"></i
                 ></a>
               </a>
@@ -100,7 +99,7 @@
         <!-- Grid row -->
 
         <div class="projectStory">
-          This project is done with love and fun. We learned a lot, both about
+          This project was done with love and fun. We learned a lot, both about
           web programming and cooking.<br />
         </div>
 
@@ -117,10 +116,7 @@
             <li><a href="https://github.com/SISE-Web-Development-Environments/assignment-3-3-or_avital">Part 3- fronted</a></li>
           </ul>
         </div>
-
-        <!-- Grid row -->
       </section>
-      <!-- Section: Team v.1 -->
     </b-container>
   </div>
 </template>
