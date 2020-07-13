@@ -151,10 +151,13 @@ export default {
 }
 .row {
   align-items: center;
+  // padding-right: 20px;
 }
 .col {
   // border-style: dotted;
   align-items: center;
   padding-top: 20px;
+  padding-right: 180px;
+  // padding: 100px;
 }
 </style>

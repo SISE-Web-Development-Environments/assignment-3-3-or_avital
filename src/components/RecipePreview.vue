@@ -121,7 +121,7 @@ export default {
 
 <style scoped>
 .recipeprev {
-  width: 300px;
+  width: 370px;
   height: 100%;
 }
 
