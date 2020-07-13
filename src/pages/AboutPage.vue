@@ -30,8 +30,8 @@
               <strong>Web developer</strong>
             </p>
             <p class="grey-text" style="text-align:left;font-size: 1.2em;">
-              Loves chewing on hummus chocolate chips cookies. In her spare
-              time, a student of information systems engineering at Ben Gurion
+              Loves chewing on hummus chocolate chips cookies. <br>
+              In her spare time, a student of information systems engineering at Ben Gurion
               University of the Negev. Specializes in NodeJS and VueJS. <br />
               You can contact me via gmail or facebook.
               <br />
@@ -74,7 +74,7 @@
               <strong>Web developer</strong>
             </p>
             <p class="grey-text" style="text-align:left;font-size: 1.2em;">
-              The worlds best hummus chocolate chips cookies baker. In her spare
+              The worlds best hummus chocolate chips cookies baker. <br> In her spare
               time, she is a student of information systems engineering at Ben
               Gurion University of the Negev. Specializes in NodeJS and VueJS.
               <br />You can contact me via gmail or facebook.
@@ -119,7 +119,7 @@
        
       </section>
       <div class="end">
-        <h5 class="font-weight-bold mt-4 mb-6 text-center"> we in real life &#129325; </h5>
+        <h5 class="font-weight-bold mt-4 mb-6 text-center"> we in real life &#128513; </h5>
           <div class="avatar mx-auto text-center">
               <img
                 src="../images/together3.png"
