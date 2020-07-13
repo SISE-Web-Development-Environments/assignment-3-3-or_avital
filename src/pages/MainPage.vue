@@ -12,7 +12,7 @@
           <br />
 
           <b-button variant="info" @click="NewRandomRecipes" id="button"
-            >Watch 3 New Recipes!</b-button
+            >Show 3 New Recipes!</b-button
           >
         </b-col>
         <b-col class="col">
@@ -79,14 +79,14 @@ export default {
 }
 
 #button {
-  background: rgb(201, 154, 110);
-  border: 2px solid rgb(199, 139, 82);
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
   margin-left: 120px;
   margin-bottom: 30px;
 }
 
 #button:hover {
-  background: rgb(187, 123, 63);
-  border: 2px solid rgb(199, 139, 82);
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
 }
 </style>

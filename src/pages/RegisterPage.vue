@@ -195,6 +195,7 @@
           variant="primary"
           style="width:250px;"
           class="ml-5 w-75"
+          id="registerbutton"
           >Register</b-button
         >
         <div class="mt-2">
@@ -361,5 +362,22 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 500px;
+  padding-bottom: 30px;
+}
+
+#registerbutton {
+  padding: 5px 10px;
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#registerbutton:hover {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#registerbutton:disabled {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
 }
 </style>

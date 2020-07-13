@@ -245,6 +245,18 @@ img {
 .favorite_btn {
   font-size: 16px;
   padding: 5px 5px;
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+.favorite_btn:hover {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+.favorite_btn:disabled {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
 }
 
 #favorite {

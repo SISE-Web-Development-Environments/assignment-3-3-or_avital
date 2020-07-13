@@ -33,15 +33,13 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item
-                class="dropitem"
-                :to="{ name: 'favoriteRecipes' }"
+              <b-dropdown-item id="dropitem" :to="{ name: 'favoriteRecipes' }"
                 >Favorite Recipes</b-dropdown-item
               >
-              <b-dropdown-item :to="{ name: 'personalRecipes' }"
+              <b-dropdown-item id="dropitem" :to="{ name: 'personalRecipes' }"
                 >Personal Recipes</b-dropdown-item
               >
-              <b-dropdown-item :to="{ name: 'familyRecipes' }"
+              <b-dropdown-item id="dropitem" :to="{ name: 'familyRecipes' }"
                 >Family Recipes</b-dropdown-item
               >
             </b-nav-item-dropdown>
@@ -103,5 +101,10 @@ export default {
 .navbar-brand {
   font-weight: bold;
   font-size: 22px;
+}
+
+#dropitem:hover {
+  color: #000000;
+  text-decoration: underline;
 }
 </style>

@@ -55,12 +55,11 @@
       </b-row>
 
       <b-row class="row justify-content-center ">
-        <b-col cols="2">
+        <b-col cols="3">
           <b-form-select
             v-model="sortby_selected"
             @change="sortby"
             :disabled="!search_results || !search_results.length"
-            width="20px"
           >
             <b-form-select-option :value="null" disabled
               >--Sort By --</b-form-select-option
@@ -337,10 +336,24 @@ export default {
 }
 
 #searchbutton {
-  width: 150px;
-  height: 60px;
+  //width: 150px;
+  // height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 30px;
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
 }
 
+#searchbutton:hover {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#searchbutton:disabled {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
 #secondrow {
   padding-top: 20px;
 }

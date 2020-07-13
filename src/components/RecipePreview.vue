@@ -38,7 +38,7 @@
             {{ recipe.aggregateLikes }} likes</b-col
           >
         </b-row>
-        <b-row class="row" no-gutters>
+        <b-row id="middlerow" class="row" no-gutters>
           <b-col :class="{ notSomething: !recipe.vegetarian }">
             <img
               :src="require('@/images/vegetarian_icon.png')"
@@ -175,11 +175,12 @@ export default {
 }
 
 .title {
-  font-size: 1.2vw;
+  font-size: 1.5vw;
   margin: 0 auto;
   min-height: 4rem;
   font-weight: bold;
   height: 3rem;
+  color: #3c9448;
 }
 
 .body {
@@ -194,5 +195,22 @@ export default {
 .favorite_btn {
   font-size: 14px;
   padding: 5px 10px;
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+.favorite_btn:hover {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+.favorite_btn:disabled {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#middlerow {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 </style>

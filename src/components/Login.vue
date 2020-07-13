@@ -41,6 +41,7 @@
         variant="primary"
         style="width:100px;display:block;"
         class="mx-auto w-100"
+        id="loginbutton"
         >Login</b-button
       >
       <div class="mt-2">
@@ -133,5 +134,22 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 400px;
+}
+
+#loginbutton {
+  font-size: 14px;
+  padding: 5px 10px;
+  background: rgb(153, 204, 111);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#loginbutton:hover {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
+}
+
+#loginbutton:disabled {
+  background: rgb(131, 184, 101);
+  border: 2px solid rgb(131, 184, 101);
 }
 </style>
