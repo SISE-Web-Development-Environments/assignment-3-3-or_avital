@@ -168,4 +168,8 @@ export default {
   cursor: pointer;
   outline: none;
 }
+
+.projectLinks {
+  padding-bottom: 30px;
+}
 </style>
