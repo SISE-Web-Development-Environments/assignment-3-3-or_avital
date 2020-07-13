@@ -3,37 +3,57 @@
     <Header />
     <div class="container" :key="searchkey">
       <b-row id="firstrow">
-        <b-col cols="4">
-          <b-form-input
-            :placeholder="search_placeholder"
-            v-model="search_string"
-          ></b-form-input>
+        <b-col cols="8">
+          <b-row>
+            <b-col cols="8">
+              <b-form-input
+                :placeholder="search_placeholder"
+                v-model="search_string"
+              ></b-form-input>
+            </b-col>
+            <b-col cols="3">
+              <b-form-select v-model="num_of_recipes">
+                <b-form-select-option :value="5"
+                  >return 5 recipes</b-form-select-option
+                >
+                <b-form-select-option :value="10"
+                  >return 10 recipes</b-form-select-option
+                >
+                <b-form-select-option :value="15"
+                  >return 15 recipes</b-form-select-option
+                >
+              </b-form-select>
+            </b-col>
+          </b-row>
+          <b-row id="secondrow">
+            <b-col cols="3">
+              <b-form-select v-model="cuisine_selected" :options="cuisines">
+              </b-form-select>
+            </b-col>
+            <b-col cols="3">
+              <b-form-select v-model="diet_selected" :options="diets">
+              </b-form-select>
+            </b-col>
+            <b-col cols="3">
+              <b-form-select
+                v-model="intolerance_selected"
+                :options="intolerances"
+              >
+              </b-form-select>
+            </b-col>
+          </b-row>
         </b-col>
         <b-col cols="1">
-          <b-form-select v-model="num_of_recipes">
-            <b-form-select-option :value="5">5</b-form-select-option>
-            <b-form-select-option :value="10">10</b-form-select-option>
-            <b-form-select-option :value="15">15</b-form-select-option>
-          </b-form-select>
-        </b-col>
-        <b-col cols="2">
-          <b-form-select v-model="cuisine_selected" :options="cuisines">
-          </b-form-select>
-        </b-col>
-        <b-col cols="2">
-          <b-form-select v-model="diet_selected" :options="diets">
-          </b-form-select>
-        </b-col>
-        <b-col cols="2">
-          <b-form-select v-model="intolerance_selected" :options="intolerances">
-          </b-form-select>
-        </b-col>
-        <b-col>
-          <b-button @click="SendSearch" :disabled="!search_string.length">
-            Send
+          <b-button
+            @click="SendSearch"
+            :disabled="!search_string.length"
+            id="searchbutton"
+          >
+            Search
           </b-button>
         </b-col>
       </b-row>
+
       <b-row class="row justify-content-center ">
         <b-col cols="2">
           <b-form-select
@@ -168,6 +188,7 @@ export default {
   methods: {
     async SendSearch() {
       console.log("send search");
+      this.searchEmpty = false;
       try {
         const response = await this.axios.get(
           "http://localhost:3000/recipe/search/query/" +
@@ -290,7 +311,7 @@ export default {
       if (this.search_defualt) {
         return this.search_defualt;
       } else {
-        return "Search";
+        return "Enter your search here";
       }
     },
   },
@@ -308,10 +329,19 @@ export default {
 
 #firstrow {
   padding-top: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 .empty {
   font-size: 22px;
   padding: 30px;
+}
+
+#searchbutton {
+  width: 150px;
+  height: 60px;
+}
+
+#secondrow {
+  padding-top: 20px;
 }
 </style>
