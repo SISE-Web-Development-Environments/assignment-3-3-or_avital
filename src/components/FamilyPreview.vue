@@ -16,8 +16,21 @@
       <b-card-title :title="recipe.title" class="title">
         <p>{{ recipe.recipe_name }}</p>
       </b-card-title>
-      <b-row class="row"> Made by: {{ recipe.family_member }} </b-row>
-      <b-row class="row"> Time: {{ recipe.when_make }} </b-row>
+      <b-row class="row justify-content-md-center">
+        <img
+          :src="require('@/images/bake_icon.png')"
+          height="20px"
+          width="20px"
+        />Made by: {{ recipe.family_member }}
+      </b-row>
+      <b-row class="row justify-content-md-center">
+        <img
+          :src="require('@/images/clock_icon.png')"
+          height="20px"
+          width="20px"
+        />
+        {{ recipe.when_make }}
+      </b-row>
     </b-card-body>
   </b-card>
 </template>
@@ -42,12 +55,14 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 70%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   position: relative;
   margin: 10px 10px;
   color: #000000;
   text-decoration: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 .recipe-preview:hover {
@@ -84,8 +99,15 @@ export default {
 }
 
 .image {
-  width: 200px;
+  width: 300px;
   height: 200px;
   position: relative;
+}
+
+.title {
+  font-size: 1.5vw;
+  margin: 0 auto;
+  font-weight: bold;
+  color: #3c9448;
 }
 </style>

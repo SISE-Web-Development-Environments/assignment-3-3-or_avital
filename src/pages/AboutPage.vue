@@ -29,6 +29,8 @@
                 src="../images/‏‏avitalImage.jpg"
                 class="rounded-circle z-depth-1"
                 alt="Sample avatar"
+                width="250px"
+                height="170px"
               />
             </div>
             <h5 class="font-weight-bold mt-4 mb-6">Avital Zehavi</h5>
@@ -138,13 +140,15 @@
       </section>
       <div class="end">
         <h5 class="font-weight-bold mt-4 mb-6 text-center">
-          we in real life &#128513;
+          Us in real life &#128513;
         </h5>
         <div class="avatar mx-auto text-center">
           <img
             src="../images/together3.png"
             class="rounded-circle z-depth-0"
             alt="Sample avatar"
+            width="400px"
+            height="300x"
           />
         </div>
       </div>
