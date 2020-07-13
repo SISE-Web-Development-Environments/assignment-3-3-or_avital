@@ -12,26 +12,38 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item :to="{ name: 'main' }">Home Page</b-nav-item>
-          <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
-          <b-nav-item :to="{ name: 'about' }">About Us</b-nav-item>
+          <b-nav-item :to="{ name: 'main' }"
+            ><strong>Home Page</strong></b-nav-item
+          >
+          <b-nav-item :to="{ name: 'search' }"
+            ><strong>Search</strong></b-nav-item
+          >
+          <b-nav-item :to="{ name: 'about' }"
+            ><strong>About Us</strong></b-nav-item
+          >
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav v-if="!$cookies.get('session')">
             <!-- User Not Connected!!!!! -->
-            <b-navbar-brand>Hello Guest!</b-navbar-brand>
-            <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
-            <b-nav-item :to="{ name: 'login' }">LogIn</b-nav-item>
+            <b-navbar-brand><strong>Hello Guest!</strong></b-navbar-brand>
+            <b-nav-item :to="{ name: 'register' }"
+              ><strong>Register</strong></b-nav-item
+            >
+            <b-nav-item :to="{ name: 'login' }"
+              ><strong>LogIn</strong></b-nav-item
+            >
           </b-navbar-nav>
           <b-navbar-nav v-else>
-            <b-navbar-brand>Hello {{ $root.store.username }}</b-navbar-brand>
+            <b-navbar-brand
+              ><strong>Hello {{ $root.store.username }}</strong></b-navbar-brand
+            >
 
             <b-nav-item-dropdown right id="drop">
               <!-- Using 'button-content' slot -->
               <template v-slot:button-content>
-                <em>User</em>
+                <em><strong>User</strong></em>
               </template>
               <b-dropdown-item id="dropitem" :to="{ name: 'favoriteRecipes' }"
                 >Favorite Recipes</b-dropdown-item
@@ -43,7 +55,7 @@
                 >Family Recipes</b-dropdown-item
               >
             </b-nav-item-dropdown>
-            <b-nav-item @click="LogoutFunc">LogOut</b-nav-item>
+            <b-nav-item @click="LogoutFunc"><strong>LogOut</strong></b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
@@ -72,7 +84,7 @@ export default {
 }
 
 .navbar {
-  font-size: 18px;
+  font-size: 22px;
   position: relative;
   z-index: 1;
   background-image: linear-gradient(
