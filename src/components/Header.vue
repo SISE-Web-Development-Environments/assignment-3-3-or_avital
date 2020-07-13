@@ -27,7 +27,7 @@
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav v-if="!$cookies.get('session')">
             <!-- User Not Connected!!!!! -->
-            <b-navbar-brand><strong>Hello Guest!</strong></b-navbar-brand>
+            <b-navbar-brand id="hello">Hello Guest!</b-navbar-brand>
             <b-nav-item :to="{ name: 'register' }"
               ><strong>Register</strong></b-nav-item
             >
@@ -36,8 +36,8 @@
             >
           </b-navbar-nav>
           <b-navbar-nav v-else>
-            <b-navbar-brand
-              ><strong>Hello {{ $root.store.username }}</strong></b-navbar-brand
+            <b-navbar-brand id="hello"
+              >Hello {{ $root.store.username }}</b-navbar-brand
             >
 
             <b-nav-item-dropdown right id="drop">
@@ -84,7 +84,7 @@ export default {
 }
 
 .navbar {
-  font-size: 22px;
+  font-size: 20px;
   position: relative;
   z-index: 1;
   background-image: linear-gradient(
@@ -110,9 +110,9 @@ export default {
   background-color: #ffffff !important;
 }
 
-.navbar-brand {
+#hello {
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 #dropitem:hover {
