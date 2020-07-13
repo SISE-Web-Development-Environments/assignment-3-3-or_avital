@@ -75,9 +75,16 @@ export default {
 
 .navbar {
   font-size: 18px;
-  background: rgb(236, 184, 134) !important;
-  position: relative; /* <-- Added */
-  z-index: 1; /* <-- Added */
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(247, 244, 241, 0.99)
+    ),
+    url("../images/header4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .nav-item.nav-item.nav-item a {
@@ -85,7 +92,8 @@ export default {
 }
 
 .nav-item.nav-item.nav-item a:hover {
-  color: #ee4444;
+  color: rgb(247, 244, 241);
+  text-decoration: underline;
 }
 
 .navbar-nav > li > .dropdown-menu {

@@ -29,14 +29,16 @@ export default {
 
 #app {
   // font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  //font-family: Comic Sans MS, Comic Sans, cursive;
+  font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000000;
   min-height: 100vh;
-  background-image: url("images/background4.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  //background-image: url("images/background4.jpeg");
+  // background-repeat: no-repeat;
+  //background-size: cover;
+  background: rgb(247, 244, 241);
 }
 
 #nav {
