@@ -27,6 +27,7 @@ export default {
   },
   created() {
     if (!this.$cookies.get("session")) {
+      this.$root.store.logout();
       this.$router.push({ name: "main" });
     }
   },

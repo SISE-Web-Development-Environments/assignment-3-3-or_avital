@@ -38,31 +38,40 @@ export default {
   async created() {
     try {
       if (!this.$cookies.get("session")) {
+        this.$root.store.logout();
         this.$router.push({ name: "main" });
       } else {
-        let response;
-        // response = this.$route.params.response;
-        response = await this.axios.get(
-          "http://localhost:3000/profile/getAllFamilyRecipesSummary",
-          //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
-          {
-            withCredentials: true,
-          }
-        );
+        if (localStorage.family_recipes) {
+          this.family_recipes = JSON.parse(localStorage.family_recipes);
+        } else {
+          let response;
+          // response = this.$route.params.response;
+          response = await this.axios.get(
+            "http://localhost:3000/profile/getAllFamilyRecipesSummary",
+            //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
+            {
+              withCredentials: true,
+            }
+          );
 
-        var family_dict = response.data;
-        this.family_recipes = [];
-        for (var recipe_id in family_dict) {
-          var currRecipe = family_dict[recipe_id];
-          currRecipe.id = recipe_id;
-          this.family_recipes.push(currRecipe);
+          var family_dict = response.data;
+          this.family_recipes = [];
+          for (var recipe_id in family_dict) {
+            var currRecipe = family_dict[recipe_id];
+            currRecipe.id = recipe_id;
+            this.family_recipes.push(currRecipe);
+          }
         }
-      }
-      if (!Array.isArray(this.family_recipes) || !this.family_recipes.length) {
-        // recipes is empty
-        this.isEmpty = true;
-      } else {
-        this.isEmpty = false;
+        if (
+          !Array.isArray(this.family_recipes) ||
+          !this.family_recipes.length
+        ) {
+          // recipes is empty
+          this.isEmpty = true;
+        } else {
+          this.isEmpty = false;
+          localStorage.family_recipes = JSON.stringify(this.family_recipes);
+        }
       }
     } catch (error) {
       console.log(error);

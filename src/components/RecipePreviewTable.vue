@@ -105,22 +105,25 @@ export default {
           this.recipeType == type &&
           this.$cookies.get("session")
         ) {
-          const response_personal_recipes = await this.axios.get(
-            "http://localhost:3000/profile/getAllPersonalRecipesSummary",
-            //"https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary",
-            { withCredentials: true }
-            //
-          );
-          recipe_dict = response_personal_recipes.data;
-          //  recipe_dict.forEach(function(recipe) {
-          //   recipe.type = "prsonal";//!!!!!!!!!!!!!!!!!!!!!!!!!!
-          //   console.log("in recupe table: "+recipe.type);
-          // });
-          this.recipes = [];
-          for (var recipe_id in recipe_dict) {
-            var currRecipe = recipe_dict[recipe_id];
-            currRecipe.id = recipe_id;
-            this.recipes.push(currRecipe);
+          if (localStorage.personal_recipes) {
+            console.log("inside");
+            this.recipes = JSON.parse(localStorage.personal_recipes);
+          } else {
+            const response_personal_recipes = await this.axios.get(
+              "http://localhost:3000/profile/getAllPersonalRecipesSummary",
+              //"https://assignment-3-2-avital.herokuapp.com/profile/getAllPersonalRecipesSummary",
+              { withCredentials: true }
+              //
+            );
+            recipe_dict = response_personal_recipes.data;
+            this.recipes = [];
+            for (var recipe_id in recipe_dict) {
+              var currRecipe = recipe_dict[recipe_id];
+              currRecipe.id = recipe_id;
+              this.recipes.push(currRecipe);
+            }
+
+            localStorage.personal_recipes = JSON.stringify(this.recipes);
           }
         } else if (type && type == "search" && this.recipeType == type) {
           this.recipes = this.$parent.search_results;

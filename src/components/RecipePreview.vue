@@ -101,7 +101,6 @@ export default {
   methods: {
     async addRecipeToFavortie() {
       try {
-        this.recipe.favorite = true;
         const addToFavorites = await this.axios.post(
           "http://localhost:3000/profile/addRecipeToFavorties",
           //  "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
@@ -110,8 +109,15 @@ export default {
             withCredentials: true,
           }
         );
+        this.recipe.favorite = true;
       } catch (error) {
         console.log(error.response);
+        if (error.response.status == 401) {
+          this.$router.push({ name: "main" }).catch((e) => {
+            console.log("cant go to home page");
+            this.$parent.$emit("updatePage");
+          });
+        }
       }
     },
   },

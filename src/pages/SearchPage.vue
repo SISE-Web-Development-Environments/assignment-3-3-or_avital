@@ -182,6 +182,9 @@ export default {
         this.search_results = searchObj.search_results;
         this.searchEmpty = searchObj.isEmpty;
       }
+    } else {
+      localStorage.removeItem("search");
+      console.log("search deleted");
     }
   },
   methods: {

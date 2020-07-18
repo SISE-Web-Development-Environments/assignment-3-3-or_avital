@@ -84,6 +84,8 @@ const shared_data = {
     console.log("logout");
     localStorage.removeItem("username");
     localStorage.removeItem("search");
+    localStorage.removeItem("family_recipes");
+    localStorage.removeItem("personal_recipes");
     this.username = undefined;
     Vue.$cookies.remove("session");
   },

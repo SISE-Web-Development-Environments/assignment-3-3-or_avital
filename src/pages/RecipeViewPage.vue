@@ -174,7 +174,7 @@ export default {
         }
 
         //add to watched
-        if (this.$route.params.likeCount >= 0) {
+        if (this.$route.params.likeCount >= 0 && this.$cookies.get("session")) {
           const addToWatched = await this.axios.post(
             "http://localhost:3000/profile/addRecipeToWatched",
             //"https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToWatched",
@@ -193,7 +193,6 @@ export default {
     checkType() {},
     async addRecipeToFavortie() {
       try {
-        this.recipe.favorite = true;
         const addToFavorites = await this.axios.post(
           "http://localhost:3000/profile/addRecipeToFavorties",
           //  "https://assignment-3-2-avital.herokuapp.com/profile/addRecipeToFavorties",
@@ -202,9 +201,13 @@ export default {
             withCredentials: true,
           }
         );
+        this.recipe.favorite = true;
         this.pagekey = this.pagekey + 1;
       } catch (error) {
         console.log(error.response);
+        if (error.response.status == 401) {
+          this.$router.push({ name: "main" }).catch((e) => {});
+        }
       }
     },
   },
