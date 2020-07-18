@@ -5,6 +5,7 @@
       <b-row>
         <b-col class="col">
           <RecipePreviewList
+            @updatePage="updateHomePage"
             title="Browse new recipes"
             recipeType="random"
             class="RandomRecipes center"
