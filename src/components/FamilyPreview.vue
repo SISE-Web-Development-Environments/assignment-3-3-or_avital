@@ -55,8 +55,8 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 200px;
   position: relative;
   margin: 10px 10px;
   color: #000000;
