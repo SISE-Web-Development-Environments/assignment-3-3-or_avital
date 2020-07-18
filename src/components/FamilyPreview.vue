@@ -106,7 +106,7 @@ export default {
 
 .title {
   font-size: 1.5vw;
-  margin: 0 auto;
+  margin: 0;
   font-weight: bold;
   color: #3c9448;
 }
