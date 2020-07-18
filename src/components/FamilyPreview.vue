@@ -55,8 +55,8 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 200px;
   position: relative;
   margin: 10px 10px;
   color: #000000;
@@ -106,7 +106,7 @@ export default {
 
 .title {
   font-size: 1.5vw;
-  margin: 0 auto;
+  margin: 0;
   font-weight: bold;
   color: #3c9448;
 }
