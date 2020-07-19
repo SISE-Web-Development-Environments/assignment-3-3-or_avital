@@ -48,6 +48,7 @@ export default {
       try {
         var recipe_dict;
         if (type && type == "random" && this.recipeType == type) {
+          // get 3 random recipes for home page
           const response = await this.axios.get(
             "http://localhost:3000/recipe/random",
             //"https://assignment-3-2-avital.herokuapp.com/recipe/random",
@@ -55,7 +56,7 @@ export default {
           );
           recipe_dict = response.data;
         } else if (type && type == "last" && this.recipeType == type) {
-          console.log("inseert to if of last");
+          // get last 3 watched... for logged in users
           const response_last3 = await this.axios.get(
             "http://localhost:3000/profile/getLast3Recipes",
             //"https://assignment-3-2-avital.herokuapp.com/profile/getLast3Recipes",
@@ -64,11 +65,10 @@ export default {
           );
 
           recipe_dict = response_last3.data;
-          console.log(recipe_dict); // dell !!
-          console.log("1 is empty: " + this.isEmpty); // dell !!
         }
         var recipe_dict_personal;
         if (this.$cookies.get("session")) {
+          // if user in connected- add watched and favorites button
           var recipe_ids = Object.keys(recipe_dict);
           const response_personal = await this.axios.get(
             "http://localhost:3000/profile/recipeInfo/[" +
@@ -90,24 +90,23 @@ export default {
           }
           this.recipes.push(currRecipe);
         }
-        console.log("2 is empty: " + this.isEmpty); // dell !!
+
         if (
           type == "last" &&
-          (!Array.isArray(this.recipes) || !this.recipes.length)
+          (!Array.isArray(this.recipes) || !this.recipes.length) // if no last watched recipes
         ) {
           // empty arr
           this.isEmpty = true;
         } else {
           this.isEmpty = false;
         }
-        console.log("3 is empty: " + this.isEmpty); // dell !!
       } catch (error) {
         console.log(error.response);
       }
     },
   },
   created: function() {
-    this.$parent.$on("updateRecipes", this.updateRecipes);
+    //this.$parent.$on("updateRecipes", this.updateRecipes);
   },
 };
 </script>

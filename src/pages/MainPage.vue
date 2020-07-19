@@ -9,6 +9,7 @@
             title="Browse new recipes"
             recipeType="random"
             class="RandomRecipes center"
+            ref="randomList"
           />
           <br />
 
@@ -57,10 +58,11 @@ export default {
   },
   methods: {
     NewRandomRecipes() {
-      this.$emit("updateRecipes", "random");
+      //this.$emit("updateRecipes", "random");
+      this.$refs.randomList.updateRecipes("random");
     },
     updateHomePage() {
-      this.update_key = this.update_key + 1;
+      this.update_key = this.update_key + 1; // updating the key refreshes the page
     },
   },
 };

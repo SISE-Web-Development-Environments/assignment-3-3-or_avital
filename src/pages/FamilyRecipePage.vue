@@ -42,10 +42,10 @@ export default {
         this.$router.push({ name: "main" });
       } else {
         if (localStorage.family_recipes) {
+          // get from local storage if has
           this.family_recipes = JSON.parse(localStorage.family_recipes);
         } else {
           let response;
-          // response = this.$route.params.response;
           response = await this.axios.get(
             "http://localhost:3000/profile/getAllFamilyRecipesSummary",
             //"https://assignment-3-2-avital.herokuapp.com/recipe/search/id/" +
@@ -70,7 +70,7 @@ export default {
           this.isEmpty = true;
         } else {
           this.isEmpty = false;
-          localStorage.family_recipes = JSON.stringify(this.family_recipes);
+          localStorage.family_recipes = JSON.stringify(this.family_recipes); // if not empty, save in local storage
         }
       }
     } catch (error) {

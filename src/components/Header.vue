@@ -67,7 +67,7 @@
 export default {
   methods: {
     LogoutFunc() {
-      console.log("logout function");
+      //console.log("logout function");
       this.$root.store.logout();
       this.$router.push({ name: "main" }).catch((e) => {
         this.$router.go(0); // reload home page

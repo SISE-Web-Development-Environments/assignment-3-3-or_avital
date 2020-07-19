@@ -184,12 +184,12 @@ export default {
       }
     } else {
       localStorage.removeItem("search");
-      console.log("search deleted");
+      // console.log("search deleted");
     }
   },
   methods: {
     async SendSearch() {
-      console.log("send search");
+      //console.log("send search");
       this.searchEmpty = false;
       try {
         const response = await this.axios.get(
@@ -287,8 +287,8 @@ export default {
 
         return this.search_results.sort(compareLikes);
       }
-      console.log("changed");
-      console.log(this.num_of_recipes);
+      // console.log("changed");
+      // console.log(this.num_of_recipes);
     },
   },
   computed: {
@@ -303,7 +303,7 @@ export default {
         //params.append("diet", this.diet_selected);
       }
       if (this.intolerance_selected) {
-        params["diet"] = this.intolerance_selected;
+        params["intolerances"] = this.intolerance_selected;
         //params.append("diet", this.intolerance_selected);
       }
 

@@ -117,7 +117,7 @@ export default {
       console.log(this.$route.params.recipeId);
       console.log(this.$route.params.likeCount);
       if (!(this.$route.params.likeCount >= 0)) {
-        console.log("is personal recipe! ");
+        // console.log("is personal recipe! ");
         response = await this.axios.get(
           // /profile/getFullPersonalRecipe/id/:id:
           "http://localhost:3000/profile/getFullPersonalRecipe/id/" +
@@ -131,12 +131,12 @@ export default {
         if (response.status !== 200) {
           this.$router.replace("/NotFound");
         }
-        console.log("succes get recupe from DB"); // dell
+        //console.log("succes get recupe from DB"); // dell
 
         let _recipe = response.data;
         this.recipe = _recipe;
       } else {
-        console.log("not personal recipe! ");
+        // console.log("not personal recipe! ");
         response = await this.axios.get(
           ///recipes/search/id/:recipeID
           "http://localhost:3000/recipe/search/id/" +
@@ -206,6 +206,8 @@ export default {
       } catch (error) {
         console.log(error.response);
         if (error.response.status == 401) {
+          // if unotherized
+          this.$root.store.logout();
           this.$router.push({ name: "main" }).catch((e) => {});
         }
       }

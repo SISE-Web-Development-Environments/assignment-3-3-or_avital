@@ -68,6 +68,7 @@ export default {
   async created() {
     try {
       if (!this.$cookies.get("session")) {
+        this.$root.store.logout();
         this.$router.push({ name: "main" });
       } else {
         let response;

@@ -113,8 +113,10 @@ export default {
       } catch (error) {
         console.log(error.response);
         if (error.response.status == 401) {
+          // if unotherized
+          this.$root.store.logout();
           this.$router.push({ name: "main" }).catch((e) => {
-            console.log("cant go to home page");
+            // go to home page
             this.$parent.$emit("updatePage");
           });
         }
