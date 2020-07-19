@@ -70,7 +70,7 @@ export default {
       console.log("logout function");
       this.$root.store.logout();
       this.$router.push({ name: "main" }).catch((e) => {
-        this.$router.go(0);
+        this.$router.go(0); // reload home page
       });
     },
   },

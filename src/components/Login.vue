@@ -109,7 +109,8 @@ export default {
         this.$root.store.login(this.form.username);
 
         this.$router.push({ name: "main" }).catch((e) => {
-          this.$emit("loggedin", this.form.username);
+          // go to home page
+          this.$emit("loggedin", this.form.username); //or  reload the home page
         });
       } catch (err) {
         console.log(err.response);

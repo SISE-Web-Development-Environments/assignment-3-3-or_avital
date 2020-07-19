@@ -106,7 +106,6 @@ export default {
           this.$cookies.get("session")
         ) {
           if (localStorage.personal_recipes) {
-            console.log("inside");
             this.recipes = JSON.parse(localStorage.personal_recipes);
           } else {
             const response_personal_recipes = await this.axios.get(
